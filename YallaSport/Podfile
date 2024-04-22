@@ -11,6 +11,7 @@ target 'YallaSport' do
   pod 'SDWebImage'
   pod 'SwiftyOnboard'
   pod 'SplashScreen'
+  pod 'lottie-ios'
 
   target 'YallaSportTests' do
     inherit! :search_paths
