@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		431891EC2BD6FB950030E010 /* mySplashLotti.json in Resources */ = {isa = PBXBuildFile; fileRef = 431891EB2BD6FB950030E010 /* mySplashLotti.json */; };
 		431891EE2BD6FE430030E010 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431891ED2BD6FE430030E010 /* HomeViewController.swift */; };
+		438523D52BD7F66B00E27CE1 /* HomeSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438523D42BD7F66B00E27CE1 /* HomeSportsCollectionViewCell.swift */; };
+		438523D72BD7FDFC00E27CE1 /* Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438523D62BD7FDFC00E27CE1 /* Details.storyboard */; };
 		4ECF43A807EA8F12035AD0F6 /* Pods_YallaSport_YallaSportUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45436FE18017AB348C06234C /* Pods_YallaSport_YallaSportUITests.framework */; };
 		56182C522BD68835005A46D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56182C512BD68835005A46D8 /* AppDelegate.swift */; };
 		56182C542BD68835005A46D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56182C532BD68835005A46D8 /* SceneDelegate.swift */; };
@@ -46,6 +48,8 @@
 		0087BA0FDD755060D84D76F4 /* Pods-YallaSportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YallaSportTests.release.xcconfig"; path = "Target Support Files/Pods-YallaSportTests/Pods-YallaSportTests.release.xcconfig"; sourceTree = "<group>"; };
 		431891EB2BD6FB950030E010 /* mySplashLotti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mySplashLotti.json; sourceTree = "<group>"; };
 		431891ED2BD6FE430030E010 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		438523D42BD7F66B00E27CE1 /* HomeSportsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSportsCollectionViewCell.swift; sourceTree = "<group>"; };
+		438523D62BD7FDFC00E27CE1 /* Details.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Details.storyboard; sourceTree = "<group>"; };
 		45436FE18017AB348C06234C /* Pods_YallaSport_YallaSportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YallaSport_YallaSportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47AABFA581647B3E5E0E09ED /* Pods-YallaSport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YallaSport.debug.xcconfig"; path = "Target Support Files/Pods-YallaSport/Pods-YallaSport.debug.xcconfig"; sourceTree = "<group>"; };
 		56182C4E2BD68835005A46D8 /* YallaSport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YallaSport.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,14 +131,16 @@
 				56182C842BD6A43E005A46D8 /* Model */,
 				56182C512BD68835005A46D8 /* AppDelegate.swift */,
 				56182C532BD68835005A46D8 /* SceneDelegate.swift */,
+				438523D42BD7F66B00E27CE1 /* HomeSportsCollectionViewCell.swift */,
 				56182C552BD68835005A46D8 /* ViewController.swift */,
+				431891ED2BD6FE430030E010 /* HomeViewController.swift */,
 				431891EB2BD6FB950030E010 /* mySplashLotti.json */,
 				56182C572BD68835005A46D8 /* Main.storyboard */,
+				438523D62BD7FDFC00E27CE1 /* Details.storyboard */,
 				56182C5D2BD68838005A46D8 /* Assets.xcassets */,
 				56182C5F2BD68838005A46D8 /* LaunchScreen.storyboard */,
 				56182C622BD68838005A46D8 /* Info.plist */,
 				56182C5A2BD68835005A46D8 /* YallaSport.xcdatamodeld */,
-				431891ED2BD6FE430030E010 /* HomeViewController.swift */,
 			);
 			path = YallaSport;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				438523D72BD7FDFC00E27CE1 /* Details.storyboard in Resources */,
 				56182C612BD68838005A46D8 /* LaunchScreen.storyboard in Resources */,
 				56182C5E2BD68838005A46D8 /* Assets.xcassets in Resources */,
 				56182C592BD68835005A46D8 /* Main.storyboard in Resources */,
@@ -430,6 +437,7 @@
 				56182C562BD68835005A46D8 /* ViewController.swift in Sources */,
 				56182C522BD68835005A46D8 /* AppDelegate.swift in Sources */,
 				56182C5C2BD68835005A46D8 /* YallaSport.xcdatamodeld in Sources */,
+				438523D52BD7F66B00E27CE1 /* HomeSportsCollectionViewCell.swift in Sources */,
 				56182C862BD6A44A005A46D8 /* League.swift in Sources */,
 				56182C542BD68835005A46D8 /* SceneDelegate.swift in Sources */,
 				431891EE2BD6FE430030E010 /* HomeViewController.swift in Sources */,
