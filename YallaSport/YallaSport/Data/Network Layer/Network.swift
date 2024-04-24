@@ -5,13 +5,15 @@
 //  Created by husayn on 22/04/2024.
 //
 
+
 import Foundation
 import Alamofire
-class Network : NetworkLayerProtocol{
+class Network :NetworkLayerProtocol{
     //apiKey
     let apiKey:String = "0b11a6a325539dbf2de2d49ca9f6c29c2fa7417fe868385cd36d18a939079788"
     //singleton
     private static var instance:Network? = nil
+    //private constructor
     private init(){}
     static func getInstance() -> Network? {
         if instance == nil {
@@ -19,34 +21,27 @@ class Network : NetworkLayerProtocol{
         }
         return instance
     }
-    
-    func fetchDataFromNetwork (sportType: String, apiMethodName: String) {
-        if let url = URL(string: "https://apiv2.allsportsapi.com/\(sportType)/?met=\(apiMethodName)&APIkey=\(apiKey)") {
-            let requset = URLRequest(url: url)
-            let session = URLSession(configuration: URLSessionConfiguration.default)
-            let task = session.dataTask(with: requset) { data, response, error in
+    //fetche leagues from network
+    func fetchLeagues(sportType sport:String,completionHandler completion: @escaping(Result<Leagues,Error>) -> Void) {
+        let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)/?met=Leagues&APIkey=\(apiKey)")
+        AF.request(url!).validate().response{ data in
+            switch data.result{
+            case .success(let fetchedData):
                 do{
-                    let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String,Any>
-                    let dataArray = jsonResponse["result"] as! Array<Dictionary<String,Any>>
-                    for item in dataArray{
-                        let leagueKey = item["league_key"] as! Int
-                        let leagueName = item["league_name"] as! String
-                        let leagueLogo = item["league_logo"] as? String
-                        
-                        let leagueModel = LeagueInfo(leagueKey: leagueKey, leagueName: leagueName, leagueLogo: leagueLogo ?? "0") as LeagueInfo
-                        print("League Name : -> \(leagueModel.leagueName)")
-                    }
-                    DispatchQueue.main.async {
-                        print("DispatchQueue\n")
-                        print("Returned to main thread")
-                    }
-                }catch{
+                    let decodedData = try JSONDecoder().decode(Leagues.self, from: fetchedData!)
+                    print(decodedData.result[0].league_name)
+                    completion(.success(decodedData))
+                } catch {
+                    print("Error from fetch Leagues -> \n")
                     print(error.localizedDescription)
-                    print("ERROR!!!\n")
+                    print(error)
+                    completion(.failure(error))
                 }
+            case .failure(let err):
+                print(err.localizedDescription)
+                print("error Fetching Leagues->> \(err)")
+                completion(.failure(err))
             }
-            task.resume()
         }
     }
-    
 }

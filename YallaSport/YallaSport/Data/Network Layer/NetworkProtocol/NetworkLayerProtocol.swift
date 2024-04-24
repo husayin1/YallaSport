@@ -7,5 +7,5 @@
 
 import Foundation
 protocol NetworkLayerProtocol{
-    func fetchDataFromNetwork (sportType: String, apiMethodName: String)
+    func fetchLeagues (sportType: String,completionHandler:@escaping(Result<Leagues,Error>)->(Void))
 }
