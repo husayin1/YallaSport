@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol LeaguesViewProtocol {
     func showDataInUI (leagues : Leagues)
@@ -15,40 +16,54 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
    
     
     var sportStr = ""
-    
+    var leaguesInfoArray : [LeagueInfo] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         let presenter = LeaguesPresenter(leaguesVC: self)
         presenter.getLeaguesFromNetwork(sportStr: sportStr)
+        
+        
+        var nibCell = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
+        tableView.register(nibCell, forCellReuseIdentifier: "cell")
 
     }
     
     func showDataInUI(leagues: Leagues) {
         DispatchQueue.main.async {
-          //  self?.myLabel.text = leagues.result[0].league_name
+           
             print("showDataInUI",leagues.result[0].league_name)
-        }
+            self.leaguesInfoArray = leagues.result
+       }
     }
 
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return leaguesInfoArray.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeaguesTableViewCell
+        cell.leagueNameLabel.text = leaguesInfoArray[indexPath.row].league_name
+        
+        //cell.leagueImageView.image = ui
+        //sd_setImage(with: leaguesInfoArray[indexPath.row].league_logo)
+        let url = URL.init(string: leaguesInfoArray[indexPath.row].league_logo!)
 
-        // Configure the cell...
+        cell.leagueImageView.sd_setImage(with: url , placeholderImage: nil)
+        
+        cell.layer.borderColor = UIColor.purple.cgColor
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
