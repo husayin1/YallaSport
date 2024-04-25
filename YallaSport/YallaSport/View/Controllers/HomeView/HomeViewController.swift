@@ -48,7 +48,7 @@ class HomeViewController: UIViewController
         }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var leagueViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueViewController") as? LeagueViewController
+        var leagueViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as? LeaguesTableViewController
 
         leagueViewController?.sportStr = sportsArray[indexPath.item]
         navigationController?.pushViewController(leagueViewController!, animated: true)

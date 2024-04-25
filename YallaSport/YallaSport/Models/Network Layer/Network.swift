@@ -8,10 +8,11 @@
 
 import Foundation
 import Alamofire
+//apiKey
+let apiKey:String = "0b11a6a325539dbf2de2d49ca9f6c29c2fa7417fe868385cd36d18a939079788"
+
 class Network :NetworkLayerProtocol{
-    //apiKey
-    let apiKey:String = "0b11a6a325539dbf2de2d49ca9f6c29c2fa7417fe868385cd36d18a939079788"
-    //singleton
+  //singleton
     private static var instance:Network? = nil
     //private constructor
     private init(){}
@@ -22,7 +23,7 @@ class Network :NetworkLayerProtocol{
         return instance
     }
     //fetche leagues from network
-    func fetchLeagues(sportType sport:String,completionHandler completion: @escaping(Result<Leagues,Error>) -> Void) {
+   static func fetchLeagues(sportType sport:String,completionHandler completion: @escaping(Result<Leagues,Error>) -> Void) {
         let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)/?met=Leagues&APIkey=\(apiKey)")
         AF.request(url!).validate().response{ data in
             switch data.result{
