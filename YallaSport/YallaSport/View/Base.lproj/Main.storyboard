@@ -61,6 +61,58 @@
             </objects>
             <point key="canvasLocation" x="3620" y="-19"/>
         </scene>
+        <!--Fixture View Controller-->
+        <scene sceneID="Qgm-cN-LFe">
+            <objects>
+                <viewController storyboardIdentifier="FixtureViewController" id="PGV-6k-OBp" customClass="FixtureViewController" customModule="YallaSport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UZ6-4E-dHt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Un7-2M-4kk">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yQK-Tq-jWN">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="fixtureCell" id="Q94-Sl-H4C">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gRR-mn-PtJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="PGV-6k-OBp" id="OMP-ks-05p"/>
+                                    <outlet property="delegate" destination="PGV-6k-OBp" id="oLd-pW-77c"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Hj3-eP-uNN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hj3-eP-uNN" firstAttribute="bottom" secondItem="Un7-2M-4kk" secondAttribute="bottom" id="775-WP-JLE"/>
+                            <constraint firstItem="Hj3-eP-uNN" firstAttribute="trailing" secondItem="Un7-2M-4kk" secondAttribute="trailing" id="Y7G-RJ-Xxy"/>
+                            <constraint firstItem="Un7-2M-4kk" firstAttribute="top" secondItem="Hj3-eP-uNN" secondAttribute="top" id="hbG-Gb-gWF"/>
+                            <constraint firstItem="Un7-2M-4kk" firstAttribute="centerX" secondItem="UZ6-4E-dHt" secondAttribute="centerX" id="j8u-Fk-BhJ"/>
+                            <constraint firstItem="Un7-2M-4kk" firstAttribute="leading" secondItem="Hj3-eP-uNN" secondAttribute="leading" id="wEQ-wV-adF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fixtureCollectionView" destination="Un7-2M-4kk" id="HD9-2S-8SU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4D9-y8-OcI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4611" y="-21"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="CrP-8w-lbN">
             <objects>
@@ -143,6 +195,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -48,7 +48,7 @@ class Network :NetworkLayerProtocol{
     
     
     
-    static func fetchTeamsFromNetwork (leagueId : Int , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
+    static func fetchTeamsFromNetwork (leagueId : String , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
         
         var url = URL(string: "https://apiv2.allsportsapi.com/football/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)")
         var request = URLRequest(url: url!)
@@ -79,6 +79,30 @@ class Network :NetworkLayerProtocol{
         task.resume()
         
         
+    }
+    
+    static func fetchFixtures(sportType sport:String,leagueID: String,from:String,to :String,completionHandler completion: @escaping(Result<Fixtures,Error>) -> (Void)) {
+        let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)/?met=Fixtures&APIkey=\(apiKey)&from=\(from)&leagueId=\(leagueID)&to=\(to)")
+        AF.request(url!).validate().response{ data in
+            switch data.result{
+            case .success(let fetchedData):
+                do{
+                    let decodedData = try JSONDecoder().decode(Fixtures.self, from: fetchedData!)
+                    print("Event home team from network")
+                    print(decodedData.result?[0].event_home_team)
+                    completion(.success(decodedData))
+                } catch {
+                    print("Error from fetch Fixtures -> \n")
+                    print(error.localizedDescription)
+                    print(error)
+                    completion(.failure(error))
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                print("error Fetching Fixtures->> \(err)")
+                completion(.failure(err))
+            }
+        }
     }
      
     

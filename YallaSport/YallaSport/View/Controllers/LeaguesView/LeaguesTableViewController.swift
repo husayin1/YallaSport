@@ -32,11 +32,13 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
     }
     
     func showDataInUI(leagues: Leagues) {
+        print("Iam Outter here")
         DispatchQueue.main.async {
-           
-            print("showDataInUI",leagues.result[0].league_name)
             self.leaguesInfoArray = leagues.result
+            self.tableView.reloadData()
+            print("showDataInUI",self.leaguesInfoArray[0].league_name)
        }
+        print("Im Inner Here")
     }
 
     
@@ -51,10 +53,20 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         return leaguesInfoArray.count
        // return test.count
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var fixtureViewController = self.storyboard?.instantiateViewController(withIdentifier: "FixtureViewController") as? FixtureViewController
+
+        fixtureViewController?.sportType = self.sportStr
+        fixtureViewController?.leagueID = String(leaguesInfoArray[indexPath.row].league_key)
+        navigationController?.pushViewController(fixtureViewController!, animated: true)
+
+        
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeaguesTableViewCell
+        
         cell.leagueNameLabel.text = leaguesInfoArray[indexPath.row].league_name
         
         //cell.leagueNameLabel.text = "\(test[indexPath.row])"
@@ -62,13 +74,13 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         //sd_setImage(with: leaguesInfoArray[indexPath.row].league_logo)
        
         
-        let url = URL.init(string: leaguesInfoArray[indexPath.row].league_logo!)
-        cell.leagueImageView.sd_setImage(with: url , placeholderImage: nil)
+        let url = URL.init(string: leaguesInfoArray[indexPath.row].league_logo ?? "")
+        
+        cell.leagueImageView.sd_setImage(with: url , placeholderImage: UIImage(named: "football"))
         cell.layer.borderColor = UIColor.purple.cgColor
 
         return cell
     }
-    
 
 
 
