@@ -45,4 +45,41 @@ class Network :NetworkLayerProtocol{
             }
         }
     }
+    
+    
+    
+    static func fetchTeamsFromNetwork (leagueId : Int , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
+        
+        var url = URL(string: "https://apiv2.allsportsapi.com/football/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)")
+        var request = URLRequest(url: url!)
+        var session = URLSession.shared
+        
+        let task = session.dataTask(with: request){
+            data,response,error in
+            if let error = error {
+                completionHnadler(.failure(error))
+                return
+            }
+            guard let data = data else {
+                let error = NSError(domain: "NoData", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])
+                completionHnadler(.failure(error))
+                return
+            }
+
+            do {
+                var teams = try JSONDecoder().decode(Teams.self, from: data)
+                completionHnadler(.success(teams))
+                print("fetchTeamsFromNetwork",teams.result[0].team_name!)
+            }
+            catch {
+                print("Error ")
+            }
+        }
+        
+        task.resume()
+        
+        
+    }
+     
+    
 }

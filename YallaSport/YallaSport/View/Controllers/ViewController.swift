@@ -23,6 +23,17 @@ class ViewController: UIViewController {
 //                print(err.localizedDescription)
 //            }
 //        }
+        
+        
+        /*         //
+         Network.fetchTeamsFromNetwork(leagueId: 3) {res in
+             switch res{
+             case .success(let teams) : print("home fetchTeamsFromNetwork",teams.result[0].team_name)
+             case .failure(_):
+                 print("error2")
+             }
+         }
+         */
     }
     
 }

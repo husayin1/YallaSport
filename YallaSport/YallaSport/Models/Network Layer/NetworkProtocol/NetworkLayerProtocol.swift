@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol NetworkLayerProtocol{
+protocol NetworkLayerProtocol : Codable {
    static func fetchLeagues (sportType: String,completionHandler:@escaping(Result<Leagues,Error>)->(Void))
 }
