@@ -10,6 +10,7 @@ import SDWebImage
 
 protocol LeaguesViewProtocol {
     func showDataInUI (leagues : Leagues)
+   // var leaguesInfoArray : [LeagueInfo]
 }
 
 class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {

@@ -21,6 +21,7 @@ class LeaguesPresenter {
             case .success(let leagues) :
             //    DispatchQueue.main.async {
                     self.leaguesVC!.showDataInUI(leagues: leagues)
+             //   self.leaguesVC!.leaguesInfoArray = leagues.result
                     print("success : ", leagues.result[0].league_name)
 
             //    }
