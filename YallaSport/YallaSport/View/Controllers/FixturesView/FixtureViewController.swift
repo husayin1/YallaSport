@@ -210,8 +210,19 @@ class FixtureViewController: UIViewController , UICollectionViewDelegate, UIColl
         switch indexPath.section {
         case 2:
             //Go to Team Details From Here ya marwa->
-            print(leagueTeams[indexPath.row].team_key)
+            print("pop",leagueTeams[indexPath.row].team_key)
             print(leagueTeams[indexPath.row].team_name)
+            
+            var teamDetails = leagueTeams[indexPath.row]
+            var teamViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController
+
+            teamViewController?.team = teamDetails
+            navigationController?.pushViewController(teamViewController!, animated: true)
+
+            
+            
+            
+            
         default:
             print("Aa")
         }

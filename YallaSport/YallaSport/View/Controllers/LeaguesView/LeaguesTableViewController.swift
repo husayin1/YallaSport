@@ -72,17 +72,25 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         //cell.leagueNameLabel.text = "\(test[indexPath.row])"
         //cell.leagueImageView.image = ui
         //sd_setImage(with: leaguesInfoArray[indexPath.row].league_logo)
-       
+    
+        let url = URL.init(string: leaguesInfoArray[indexPath.row].league_logo ?? "fixedLogo")
         
-        let url = URL.init(string: leaguesInfoArray[indexPath.row].league_logo ?? "")
+        cell.leagueImageView.sd_setImage(with: url , placeholderImage: UIImage(named: "fixedLogo"))
         
-        cell.leagueImageView.sd_setImage(with: url , placeholderImage: UIImage(named: "football"))
-        cell.layer.borderColor = UIColor.purple.cgColor
+        cell.leagueImageView.layer.cornerRadius = 75
+        
+        cell.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        cell.contentView.layer.borderWidth = 1
+        cell.contentView.layer.borderColor = UIColor.purple.cgColor
+
 
         return cell
     }
-
-
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
 
     /*
     // Override to support editing the table view.

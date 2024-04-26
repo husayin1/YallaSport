@@ -14,7 +14,10 @@ struct Teams : Codable {
 
    }
 
-
+class Coaches:Codable{
+            
+    var coach_name : String?
+      }
 
 struct TeamsResult   : Codable {
     
@@ -22,6 +25,8 @@ struct TeamsResult   : Codable {
         var team_name: String?
         var team_logo: String?
         var players  : [Players]
+        var coaches  : [Coaches]
+    
    
 }
 
