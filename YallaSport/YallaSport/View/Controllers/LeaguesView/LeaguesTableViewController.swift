@@ -56,12 +56,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeaguesTableViewCell
         cell.leagueNameLabel.text = leaguesInfoArray[indexPath.row].league_name
-        
-        //cell.leagueNameLabel.text = "\(test[indexPath.row])"
-        //cell.leagueImageView.image = ui
-        //sd_setImage(with: leaguesInfoArray[indexPath.row].league_logo)
-       
-        
+
         let url = URL.init(string: leaguesInfoArray[indexPath.row].league_logo!)
         cell.leagueImageView.sd_setImage(with: url , placeholderImage: nil)
         cell.layer.borderColor = UIColor.purple.cgColor

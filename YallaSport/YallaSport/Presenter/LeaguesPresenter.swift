@@ -16,11 +16,11 @@ class LeaguesPresenter {
     
     
     func getLeaguesFromNetwork (sportStr:String){
-        Network.fetchLeagues(sportType: sportStr, completionHandler: { [weak self] result in
+        Network.fetchLeagues(sportType: sportStr, completionHandler: {  result in
             switch result {
             case .success(let leagues) :
             //    DispatchQueue.main.async {
-                    self?.leaguesVC!.showDataInUI(leagues: leagues)
+                    self.leaguesVC!.showDataInUI(leagues: leagues)
                     print("success : ", leagues.result[0].league_name)
 
             //    }

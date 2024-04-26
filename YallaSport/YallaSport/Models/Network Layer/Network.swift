@@ -47,7 +47,32 @@ class Network :NetworkLayerProtocol{
     }
     
     
+    static func fetchTeamsFromNetwork (leagueId : Int , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
+        AF.request("https://apiv2.allsportsapi.com/football/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)").validate().response { response in
+            switch response.result {
+            case .success(let teamsData) :
+                do {
+                    var teams = try JSONDecoder().decode(Teams.self, from: teamsData!)
+                    completionHnadler(.success(teams))
+                    print("fetchTeamsFromNetwork",teams.result[0].team_name!)
+                }
+                catch {
+                    completionHnadler(.failure(error))
+                    print("Error ")
+                }
+            
+                
+                
+            case .failure(let error):
+                completionHnadler(.failure(error))
+            }
+        }
+        
+        
+    }
     
+     //fetch data using url session
+    /*
     static func fetchTeamsFromNetwork (leagueId : Int , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
         
         var url = URL(string: "https://apiv2.allsportsapi.com/football/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)")
@@ -77,9 +102,8 @@ class Network :NetworkLayerProtocol{
         }
         
         task.resume()
-        
-        
+
     }
-     
+     */
     
 }
