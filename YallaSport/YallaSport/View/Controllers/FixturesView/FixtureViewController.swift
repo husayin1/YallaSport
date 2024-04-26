@@ -6,8 +6,11 @@
 //
 
 import UIKit
+protocol FixtureProtocol{
+    
+}
 
-class FixtureViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+class FixtureViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDelegateFlowLayout,FixtureProtocol {
     
     @IBOutlet weak var fixtureCollectionView: UICollectionView!
     
