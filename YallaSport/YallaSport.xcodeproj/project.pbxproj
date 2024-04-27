@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434DBFCC2BDCEDBC00CB08B6 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DBFCB2BDCEDBC00CB08B6 /* DataBaseManager.swift */; };
+		434DBFCE2BDCF9C500CB08B6 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434DBFCD2BDCF9C500CB08B6 /* FavouriteViewController.swift */; };
 		4385E5C42BD9469E002BEFC8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4385E5C32BD9469E002BEFC8 /* HomeViewController.swift */; };
 		4385E5C82BD94A70002BEFC8 /* HomeSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4385E5C72BD94A70002BEFC8 /* HomeSportsCollectionViewCell.swift */; };
 		43867CF32BDC588B00528F0C /* TeamDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43867CF22BDC588B00528F0C /* TeamDetailsCollectionViewCell.swift */; };
@@ -61,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		0087BA0FDD755060D84D76F4 /* Pods-YallaSportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YallaSportTests.release.xcconfig"; path = "Target Support Files/Pods-YallaSportTests/Pods-YallaSportTests.release.xcconfig"; sourceTree = "<group>"; };
+		434DBFCB2BDCEDBC00CB08B6 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		434DBFCD2BDCF9C500CB08B6 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		4385E5C32BD9469E002BEFC8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4385E5C72BD94A70002BEFC8 /* HomeSportsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSportsCollectionViewCell.swift; sourceTree = "<group>"; };
 		43867CF22BDC588B00528F0C /* TeamDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -133,6 +137,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		434DBFCA2BDCED9500CB08B6 /* DataBase Layer */ = {
+			isa = PBXGroup;
+			children = (
+				434DBFCB2BDCEDBC00CB08B6 /* DataBaseManager.swift */,
+			);
+			path = "DataBase Layer";
+			sourceTree = "<group>";
+		};
 		438A757E2BDC4D0900B6EB15 /* TeamsDetailsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +157,7 @@
 		43B889F22BDAB403004EC2BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				434DBFCA2BDCED9500CB08B6 /* DataBase Layer */,
 				43B889FB2BDAC4BA004EC2BF /* Data Model */,
 				56182C8B2BD6B77B005A46D8 /* Network Layer */,
 			);
@@ -179,6 +192,7 @@
 				43B889FE2BDACFE8004EC2BF /* LeaguesView */,
 				43B889F82BDABE45004EC2BF /* HomeView */,
 				56182C552BD68835005A46D8 /* ViewController.swift */,
+				434DBFCD2BDCF9C500CB08B6 /* FavouriteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -594,6 +608,8 @@
 				56186EB22BDBC7420017185F /* FixtureViewController.swift in Sources */,
 				56182C8F2BD6B7B9005A46D8 /* Network.swift in Sources */,
 				56182C9E2BD6FBB3005A46D8 /* Leagues.swift in Sources */,
+				434DBFCC2BDCEDBC00CB08B6 /* DataBaseManager.swift in Sources */,
+				434DBFCE2BDCF9C500CB08B6 /* FavouriteViewController.swift in Sources */,
 				56182C5C2BD68835005A46D8 /* YallaSport.xcdatamodeld in Sources */,
 				562E62F32BDC097C00B89C22 /* TeamCollectionViewCell.swift in Sources */,
 				56186EB42BDBC8C60017185F /* Fixtures.swift in Sources */,

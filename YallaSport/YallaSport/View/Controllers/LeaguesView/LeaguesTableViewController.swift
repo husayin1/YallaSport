@@ -58,6 +58,9 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
 
         fixtureViewController?.sportType = self.sportStr
         fixtureViewController?.leagueID = String(leaguesInfoArray[indexPath.row].league_key)
+        //
+        DataBaseManager.addLeague(league: leaguesInfoArray[indexPath.row])
+        //
         navigationController?.pushViewController(fixtureViewController!, animated: true)
 
         
@@ -77,11 +80,14 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         
         cell.leagueImageView.sd_setImage(with: url , placeholderImage: UIImage(named: "fixedLogo"))
         
-        cell.leagueImageView.layer.cornerRadius = 75
-        
-        cell.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        cell.contentView.layer.borderWidth = 1
-        cell.contentView.layer.borderColor = UIColor.purple.cgColor
+        cell.leagueImageView.layer.cornerRadius = 70
+        cell.backgroundImg.layer.borderWidth = 1
+        cell.backgroundImg.layer.cornerRadius = 35
+        cell.backgroundImg.layer.borderColor = UIColor(red: 21/255, green: 52/255, blue: 72/255, alpha: 1.0).cgColor
+
+
+       // cell.contentView.layer.borderWidth = 1
+     //   cell.contentView.layer.borderColor = UIColor.purple.cgColor
 
 
         return cell

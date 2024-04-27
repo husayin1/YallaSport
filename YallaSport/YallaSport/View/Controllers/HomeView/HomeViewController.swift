@@ -23,11 +23,12 @@ class HomeViewController: UIViewController
         self.myCollectionViewSportsType.dataSource = self
         
         self.myCollectionViewSportsType.layer.borderWidth = 1.0
-        self.myCollectionViewSportsType.layer.borderColor = UIColor.purple.cgColor
+        self.myCollectionViewSportsType.layer.borderColor = UIColor(red: 21/255, green: 52/255, blue: 72/255, alpha: 1.0).cgColor
+
         self.myCollectionViewSportsType.layer.cornerRadius = 50
         
 
-        
+
     }
     
  
