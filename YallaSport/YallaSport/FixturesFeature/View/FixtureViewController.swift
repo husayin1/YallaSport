@@ -32,6 +32,8 @@ class FixtureViewController: UIViewController, FixtureProtocol {
         
         fixtureCollectionView.register(UINib(nibName: "TeamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "teamCell")
         
+        fixtureCollectionView.register(HeaderCollectionViewReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionReusableView")
+        
         let layout = UICollectionViewCompositionalLayout{
             index , enviroment in
             switch index {
@@ -46,7 +48,7 @@ class FixtureViewController: UIViewController, FixtureProtocol {
         fixtureCollectionView.setCollectionViewLayout(layout, animated: true)
         
     }
-
+    
     func drawTopSection() -> NSCollectionLayoutSection{
         //size
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -54,7 +56,7 @@ class FixtureViewController: UIViewController, FixtureProtocol {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.90), heightDimension: .absolute(180))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.97), heightDimension: .absolute(180))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         //section
         let section = NSCollectionLayoutSection(group: group)
@@ -101,6 +103,7 @@ class FixtureViewController: UIViewController, FixtureProtocol {
     func showFixtures(fixtures: [FixturesInfo]?) {
         DispatchQueue.main.async {
             let matches: [FixturesInfo] = fixtures ?? [FixturesInfo]()
+            self.previousMatches.removeAll()
             for match in matches {
                 if match.event_ft_result == "" {
                     self.currentMatches.append(match)
@@ -150,6 +153,21 @@ extension FixtureViewController: UICollectionViewDelegate{
 
 
 extension FixtureViewController: UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionName = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionViewReusableView
+        
+        if kind == UICollectionView.elementKindSectionHeader {
+            switch indexPath.section {
+            case 0:
+                sectionName.collectionHeader.text = "Up Coming Matches"
+            case 1:
+                sectionName.collectionHeader.text = "Latest Matches"
+            default:
+                sectionName.collectionHeader.text = "League Teams"
+            }
+        }
+        return sectionName
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -194,10 +212,21 @@ extension FixtureViewController: UICollectionViewDataSource{
         // #warning Incomplete implementation, return the number of items
         switch section{
         case 0:
+            if currentMatches.count == 0 {
+                currentMatches.append(FixturesInfo(league_key: 0, event_date: "UnExist", event_time: "Unavilable", event_home_team: "No Team", event_away_team: "No Team", home_team_logo: "TeamLogo", away_team_logo: "AwayLogo", event_ft_result: "0-0"))
+                return 1
+            }
             return currentMatches.count
         case 1:
+            if previousMatches.count == 0 {
+                previousMatches.append(FixturesInfo(league_key: 0, event_date: "UnExist", event_time: "Unavilable", event_home_team: "No Team", event_away_team: "No Team", home_team_logo: "TeamLogo", away_team_logo: "AwayLogo", event_ft_result: "0-0"))
+                
+            }
             return previousMatches.count
         case 2:
+            if leagueTeams.count == 0 {
+                leagueTeams.append(TeamsResult(team_key: 0,team_name: "NoTeams",team_logo: "NoLogo"))
+            }
             return leagueTeams.count
         default:
             return 0

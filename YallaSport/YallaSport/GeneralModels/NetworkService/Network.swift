@@ -12,6 +12,7 @@ import Alamofire
 protocol NetworkLayerProtocol : Codable {
     static func fetchLeagues (sportType: String,completionHandler:@escaping(Result<Leagues,Error>)->(Void))
     static func fetchFixtures(sportType: String,leagueID: String,from:String,to :String, completionHandler:@escaping(Result<Fixtures,Error>)->(Void))
+    static func fetchTeamsFromNetwork (sportType: String,leagueId : String , completionHnadler : @escaping (Result<Teams , Error>) ->()) 
 }
 
 
@@ -48,10 +49,12 @@ class Network :NetworkLayerProtocol{
     
     
     
-    static func fetchTeamsFromNetwork (leagueId : String , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
+    static func fetchTeamsFromNetwork (sportType: String,leagueId : String , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
         
-        let url = URL(string: "\(base_Url)football/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)")
-        let request = URLRequest(url: url!)
+        let url = URL(string: "\(base_Url)\(sportType)/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)")
+        guard let newUrl = url else {return }
+        print(newUrl)
+        let request = URLRequest(url: newUrl)
         let session = URLSession.shared
         
         let task = session.dataTask(with: request){
@@ -67,9 +70,10 @@ class Network :NetworkLayerProtocol{
             }
 
             do {
-                var teams = try JSONDecoder().decode(Teams.self, from: data)
+                let teams = try JSONDecoder().decode(Teams.self, from: data)
                 completionHnadler(.success(teams))
-                print("fetchTeamsFromNetwork",teams.result[0].team_name!)
+                print(newUrl)
+                print("fetchTeamsFromNetwork",teams.result?[0].team_name ?? "Unfound teams")
             }
             catch {
                 print("Error ")

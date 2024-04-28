@@ -27,7 +27,6 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         
         let nibCell = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: "cell")
-
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

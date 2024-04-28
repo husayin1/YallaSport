@@ -23,11 +23,6 @@
                             <constraint firstAttribute="width" constant="90" id="8Lt-F8-V23"/>
                             <constraint firstAttribute="height" constant="90" id="gD5-wZ-HFd"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <integer key="value" value="50"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rW1-Hw-q4h">
                         <rect key="frame" x="246" y="24" width="90" height="90"/>
@@ -35,11 +30,6 @@
                             <constraint firstAttribute="width" constant="90" id="4Ft-Kz-ecC"/>
                             <constraint firstAttribute="height" constant="90" id="rNL-Hc-4lv"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <integer key="value" value="50"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUz-5r-i7q">
                         <rect key="frame" x="170" y="79.666666666666671" width="20" height="21"/>

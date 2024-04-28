@@ -41,7 +41,7 @@ class FixturesPresenter{
         }
     }
     func fetchTeamsFromNetwork(){
-        Network.fetchTeamsFromNetwork(leagueId: leagueID){
+        Network.fetchTeamsFromNetwork(sportType:sportType,leagueId: leagueID){
             data in
             switch data {
             case .success(let response):

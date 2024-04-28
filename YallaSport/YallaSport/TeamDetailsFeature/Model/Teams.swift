@@ -9,7 +9,7 @@ import Foundation
 
 struct Teams : Codable {
     var success :  Int?
-    var result  :  [TeamsResult]
+    var result  :  [TeamsResult]?
 }
 
 class Coaches:Codable{
@@ -20,8 +20,8 @@ struct TeamsResult   : Codable {
     var team_key : Int?
     var team_name: String?
     var team_logo: String?
-    var players  : [Players]
-    var coaches  : [Coaches]
+    var players  : [Players]?
+    var coaches  : [Coaches]?
 }
 
 
