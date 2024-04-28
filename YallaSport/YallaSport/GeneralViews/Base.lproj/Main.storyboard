@@ -112,7 +112,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Un7-2M-4kk">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="151" width="406" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yQK-Tq-jWN">
                                     <size key="itemSize" width="128" height="128"/>
@@ -122,10 +122,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="fixtureCell" id="Q94-Sl-H4C">
-                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gRR-mn-PtJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" systemColor="systemBrownColor"/>
                                         </collectionViewCellContentView>
@@ -136,20 +136,31 @@
                                     <outlet property="delegate" destination="PGV-6k-OBp" id="oLd-pW-77c"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ss-e6-Qgy">
+                                <rect key="frame" x="330.66666666666669" y="103" width="46.333333333333314" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                                <connections>
+                                    <action selector="saveLeagueData:" destination="PGV-6k-OBp" eventType="touchUpInside" id="UIG-8K-wew"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hj3-eP-uNN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Hj3-eP-uNN" firstAttribute="bottom" secondItem="Un7-2M-4kk" secondAttribute="bottom" id="775-WP-JLE"/>
-                            <constraint firstItem="Hj3-eP-uNN" firstAttribute="trailing" secondItem="Un7-2M-4kk" secondAttribute="trailing" id="Y7G-RJ-Xxy"/>
-                            <constraint firstItem="Un7-2M-4kk" firstAttribute="top" secondItem="Hj3-eP-uNN" secondAttribute="top" id="hbG-Gb-gWF"/>
-                            <constraint firstItem="Un7-2M-4kk" firstAttribute="centerX" secondItem="UZ6-4E-dHt" secondAttribute="centerX" id="j8u-Fk-BhJ"/>
+                            <constraint firstItem="Hj3-eP-uNN" firstAttribute="trailing" secondItem="Un7-2M-4kk" secondAttribute="trailing" constant="-13" id="Y7G-RJ-Xxy"/>
+                            <constraint firstItem="Un7-2M-4kk" firstAttribute="top" secondItem="Hj3-eP-uNN" secondAttribute="top" constant="48" id="hbG-Gb-gWF"/>
+                            <constraint firstItem="Un7-2M-4kk" firstAttribute="centerX" secondItem="UZ6-4E-dHt" secondAttribute="centerX" constant="6.5" id="j8u-Fk-BhJ"/>
+                            <constraint firstItem="Un7-2M-4kk" firstAttribute="top" secondItem="6ss-e6-Qgy" secondAttribute="bottom" constant="13" id="q94-CZ-LaK"/>
                             <constraint firstItem="Un7-2M-4kk" firstAttribute="leading" secondItem="Hj3-eP-uNN" secondAttribute="leading" id="wEQ-wV-adF"/>
+                            <constraint firstItem="Hj3-eP-uNN" firstAttribute="trailing" secondItem="6ss-e6-Qgy" secondAttribute="trailing" constant="16" id="y8p-ew-5cx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="League Details" id="XLP-zM-m8v"/>
                     <connections>
                         <outlet property="fixtureCollectionView" destination="Un7-2M-4kk" id="HD9-2S-8SU"/>
+                        <outlet property="saveButton" destination="6ss-e6-Qgy" id="uSY-Zi-gre"/>
                         <segue destination="CE9-Nf-VsE" kind="show" id="sHi-oE-gEg"/>
                     </connections>
                 </viewController>

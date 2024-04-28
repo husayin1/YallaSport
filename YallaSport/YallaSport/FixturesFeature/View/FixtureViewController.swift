@@ -12,6 +12,7 @@ protocol FixtureProtocol{
 }
 
 class FixtureViewController: UIViewController, FixtureProtocol {
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBOutlet weak var fixtureCollectionView: UICollectionView!
     
@@ -120,6 +121,11 @@ class FixtureViewController: UIViewController, FixtureProtocol {
             self.leagueTeams = teams ?? [TeamsResult]()
             self.fixtureCollectionView.reloadData()
         }
+    }
+    
+    @IBAction func saveLeagueData(_ sender: UIButton) {
+        //here to save leagueData y marwa
+        sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
     }
 }
 
