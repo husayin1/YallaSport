@@ -57,8 +57,7 @@ class DataBaseManager {
 
               myLeague.setValue(league.league_key, forKey: "league_key")
               myLeague.setValue(league.league_name, forKey: "league_name")
-              myLeague.setValue(sportName, forKey: "sport_name")
-
+             
               if let logoURLString = league.league_logo,
                  let url = URL(string: logoURLString) {
                   let task = URLSession.shared.dataTask(with: url) { data, response, error in

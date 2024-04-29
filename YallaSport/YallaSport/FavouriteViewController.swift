@@ -94,16 +94,7 @@ extension FavouriteViewController : UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(isConnected){
-            let fixtureViewController = self.storyboard?.instantiateViewController(withIdentifier: "FixtureViewController") as? FixtureViewController
-            print(leaguesArray[indexPath.row].sport_name!)
-
-            fixtureViewController?.sportType = leaguesArray[indexPath.row].sport_name!
-            fixtureViewController?.leagueID = "\(leaguesArray[indexPath.row].league_key)"
-            //
-       //     fixtureViewController?.currentLeague = LeagueInfo(league_key: leaguesArray[indexPath.row].league_key ,league_name: leaguesArray[indexPath.row].league_name,league_logo: leaguesArray[indexPath.row].league_logo) 
-            //
-            navigationController?.pushViewController(fixtureViewController!, animated: true)
-            
+ 
         }else{
             createAlert()
         }
