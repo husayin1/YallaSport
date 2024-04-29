@@ -66,6 +66,14 @@ class FixtureViewController: UIViewController, FixtureProtocol {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        
+        //
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+                let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                
+                section.boundarySupplementaryItems = [headerSupplementary]
+          
+        //
         return section
     }
     
@@ -83,6 +91,13 @@ class FixtureViewController: UIViewController, FixtureProtocol {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        //
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+                let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                
+                section.boundarySupplementaryItems = [headerSupplementary]
+                
+        //
         return section
     }
     
@@ -100,6 +115,13 @@ class FixtureViewController: UIViewController, FixtureProtocol {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        //
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+                let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                
+                section.boundarySupplementaryItems = [headerSupplementary]
+              
+        //
         return section
     }
     
@@ -185,6 +207,7 @@ extension FixtureViewController: UICollectionViewDataSource{
         // #warning Incomplete implementation, return the number of sections
         return 3
     }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fixtureCell", for: indexPath) as! FixtureCollectionViewCell
         
@@ -244,4 +267,5 @@ extension FixtureViewController: UICollectionViewDataSource{
             return 0
         }
     }
+    
 }

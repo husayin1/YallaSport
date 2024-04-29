@@ -47,7 +47,7 @@ class DataBaseManager {
 //        }
 //
     
-    static func addLeague(league: LeagueInfo) {
+    static func addLeague(league: LeagueInfo , sportName : String) {
         guard let entity = NSEntityDescription.entity(forEntityName: "League", in: context) else {
                   print("Entity is nil")
                   return
@@ -57,6 +57,7 @@ class DataBaseManager {
 
               myLeague.setValue(league.league_key, forKey: "league_key")
               myLeague.setValue(league.league_name, forKey: "league_name")
+              myLeague.setValue(sportName, forKey: "sport_name")
 
               if let logoURLString = league.league_logo,
                  let url = URL(string: logoURLString) {

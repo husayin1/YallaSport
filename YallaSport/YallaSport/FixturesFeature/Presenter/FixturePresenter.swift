@@ -53,7 +53,7 @@ class FixturesPresenter{
     }
     
     func addLeagueToDB (league : LeagueInfo){
-        DataBaseManager.addLeague(league: league)
+        DataBaseManager.addLeague(league: league , sportName: sportType)
     }
     
 }

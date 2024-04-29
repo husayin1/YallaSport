@@ -9,7 +9,7 @@ import UIKit
 
 class FavouriteViewController: UIViewController   {
     
-    var leaguesInfoArray = DataBaseManager.fetchLeaguesFromDB()
+    var leaguesArray = DataBaseManager.fetchLeaguesFromDB()
     var isConnected = true
 
     @IBOutlet weak var favTableView: UITableView!
@@ -23,8 +23,8 @@ class FavouriteViewController: UIViewController   {
         let nibCell = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         favTableView.register(nibCell, forCellReuseIdentifier: "cell")
 
-        leaguesInfoArray = DataBaseManager.fetchLeaguesFromDB()
-        if leaguesInfoArray.count == 0{
+        leaguesArray = DataBaseManager.fetchLeaguesFromDB()
+        if leaguesArray.count == 0{
             noFavImg.isHidden = false
             favTableView.isHidden = true
             print(" count =0")
@@ -38,8 +38,8 @@ class FavouriteViewController: UIViewController   {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        leaguesInfoArray = DataBaseManager.fetchLeaguesFromDB()
-        if leaguesInfoArray.count == 0{
+        leaguesArray = DataBaseManager.fetchLeaguesFromDB()
+        if leaguesArray.count == 0{
             noFavImg.isHidden = false
             favTableView.isHidden = true
         }
@@ -61,14 +61,14 @@ class FavouriteViewController: UIViewController   {
 
 extension  FavouriteViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return  leaguesInfoArray.count
+      return  leaguesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeaguesTableViewCell
         
-        cell.leagueNameLabel.text = leaguesInfoArray[indexPath.row].league_name
-        if let imageData = leaguesInfoArray[indexPath.row].league_logo {
+        cell.leagueNameLabel.text = leaguesArray[indexPath.row].league_name
+        if let imageData = leaguesArray[indexPath.row].league_logo {
                         cell.leagueImageView.image = UIImage(data: imageData)
                     }
                     else {
@@ -79,7 +79,6 @@ extension  FavouriteViewController : UITableViewDataSource {
         cell.backgroundImg.layer.borderWidth = 1
         cell.backgroundImg.layer.cornerRadius = 35
         cell.backgroundImg.layer.borderColor = UIColor(red: 0.0/255.0, green: 121.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
-        //UIColor(red: 21/255, green: 52/255, blue: 72/255, alpha: 1.0).cgColor
 
         return cell
     }
@@ -87,16 +86,40 @@ extension  FavouriteViewController : UITableViewDataSource {
 extension FavouriteViewController : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        leaguesInfoArray.remove(at: indexPath.row)
+        leaguesArray.remove(at: indexPath.row)
         favTableView.reloadData()
         // delete from data base ya husayn
+        
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(isConnected){
+            let fixtureViewController = self.storyboard?.instantiateViewController(withIdentifier: "FixtureViewController") as? FixtureViewController
+            print(leaguesArray[indexPath.row].sport_name!)
+
+            fixtureViewController?.sportType = leaguesArray[indexPath.row].sport_name!
+            fixtureViewController?.leagueID = "\(leaguesArray[indexPath.row].league_key)"
+            //
+       //     fixtureViewController?.currentLeague = LeagueInfo(league_key: leaguesArray[indexPath.row].league_key ,league_name: leaguesArray[indexPath.row].league_name,league_logo: leaguesArray[indexPath.row].league_logo) 
+            //
+            navigationController?.pushViewController(fixtureViewController!, animated: true)
             
         }else{
-            
+            createAlert()
         }
     }
+    
+    func createAlert()
+    {
+        // create the alert
+        let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+     //   alert.addAction(UIAlertAction(title: "CANCEL", style: UIAlertAction.Style.default, handler: nil))
+    
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+
 }
