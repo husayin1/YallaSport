@@ -13,4 +13,8 @@ class HomeSportsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var sportImageView: UIImageView!
         
+    func setUpHomeSportsCell(sport:String){
+        self.sportLabel.text = sport.capitalized
+        self.sportImageView.image = UIImage(named: sport)
+    }
 }

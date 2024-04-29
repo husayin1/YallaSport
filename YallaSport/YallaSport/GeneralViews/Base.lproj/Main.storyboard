@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -40,8 +41,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3fq-w1-h3u">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.25073760750000001" green="0.48133987189999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.32955798139999998" green="0.48670694860000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="E0w-7w-MxS" customClass="LeaguesTableViewCell" customModule="YallaSport" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -165,7 +165,7 @@
                     <navigationItem key="navigationItem" title="League Details" id="XLP-zM-m8v"/>
                     <connections>
                         <outlet property="fixtureCollectionView" destination="Un7-2M-4kk" id="HD9-2S-8SU"/>
-                        <outlet property="saveButton" destination="6ss-e6-Qgy" id="uSY-Zi-gre"/>
+                        <outlet property="saveButton" destination="6ss-e6-Qgy" id="G6e-fM-Q9v"/>
                         <segue destination="CE9-Nf-VsE" kind="show" id="sHi-oE-gEg"/>
                     </connections>
                 </viewController>
@@ -204,7 +204,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HXf-e7-G19">
-                                <rect key="frame" x="16" y="397" width="361" height="386"/>
+                                <rect key="frame" x="16" y="397" width="361" height="421"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -291,7 +291,7 @@
                         <viewLayoutGuide key="safeArea" id="D9H-V3-6C0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="Bud-wZ-nhW"/>
+                    <tabBarItem key="tabBarItem" title="Sports" image="sportscourt" catalog="system" id="Bud-wZ-nhW"/>
                     <navigationItem key="navigationItem" title="Sports" id="Jl2-Ls-mzk"/>
                     <connections>
                         <outlet property="myCollectionViewSportsType" destination="adg-yw-F1E" id="y8g-4G-nAc"/>
@@ -311,12 +311,12 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
-                            <color key="textShadowColor" systemColor="secondarySystemBackgroundColor"/>
+                            <color key="textColor" name="AccentColor"/>
+                            <color key="textShadowColor" name="AccentColor"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
-                            <color key="textShadowColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                            <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                            <color key="textShadowColor" systemColor="secondarySystemBackgroundColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -352,8 +352,11 @@
     <resources>
         <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="bookmark.fill" catalog="system" width="110" height="128"/>
-        <image name="homekit" catalog="system" width="128" height="104"/>
         <image name="noFavs" width="2000" height="2000"/>
+        <image name="sportscourt" catalog="system" width="128" height="83"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

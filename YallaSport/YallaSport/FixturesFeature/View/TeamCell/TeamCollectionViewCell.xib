@@ -17,8 +17,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="126" height="134"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AlMasry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v0-pt-a3i">
-                        <rect key="frame" x="32" y="102" width="62" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AlMasry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v0-pt-a3i">
+                        <rect key="frame" x="4" y="102" width="118" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,8 +36,10 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
             <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="6v0-pt-a3i" secondAttribute="trailing" constant="4" id="4OL-Ta-uPL"/>
                 <constraint firstAttribute="trailing" secondItem="HKe-yV-XzS" secondAttribute="trailing" constant="18" id="DPL-Ef-pXK"/>
                 <constraint firstItem="HKe-yV-XzS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="KVL-vn-iKk"/>
+                <constraint firstItem="6v0-pt-a3i" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="4" id="LCp-Px-E1b"/>
                 <constraint firstItem="6v0-pt-a3i" firstAttribute="centerX" secondItem="HKe-yV-XzS" secondAttribute="centerX" id="PkO-0O-td5"/>
                 <constraint firstItem="HKe-yV-XzS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="d7H-sL-6Pv"/>
                 <constraint firstItem="HKe-yV-XzS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="dke-2n-Po9"/>

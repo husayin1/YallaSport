@@ -29,5 +29,13 @@ class PlayerViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func setUpPlayerCell(player:Players?){
+        guard let player = player else {return}
+        playerName.text = player.player_name
+        playerImage.sd_setImage(with: URL(string: player.player_image ?? ""),placeholderImage: UIImage(named: "basketballplayerplaceholder"))
+        playerNo.text = player.player_number
+        playerPosition.text = player.player_type
+    }
+    
     
 }

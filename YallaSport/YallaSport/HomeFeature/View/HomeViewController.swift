@@ -7,13 +7,23 @@
 
 import UIKit
 
-class HomeViewController: UIViewController{
+protocol HomeViewProtocol {
+    func showAlert()
+    func ContinueProcess(indexPath:IndexPath)
+    
+}
+class HomeViewController: UIViewController,HomeViewProtocol{
+    
+    
 
     var sportsArray : [String]=[]
     var leaguesArray : [Leagues] = []
+    var presenter:HomePresenter?
     @IBOutlet weak var myCollectionViewSportsType: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter = HomePresenter(homeVc: self)
         sportsArray =   ["football","basketball","tennis","cricket"]
         self.myCollectionViewSportsType.delegate = self
         self.myCollectionViewSportsType.dataSource = self
@@ -25,27 +35,43 @@ class HomeViewController: UIViewController{
         self.myCollectionViewSportsType.layer.cornerRadius = 50
         
     }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Sorry!", message: "It seems you are not connected to the internet. Please check your network connection and try again.", preferredStyle: UIAlertController.Style.alert)
+        
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+    
+        self.present(alert, animated: true, completion: nil)
+    
+    }
+    
+    func ContinueProcess(indexPath :IndexPath) {
+        let leagueViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as? LeaguesTableViewController
+
+        guard let leagueViewController = leagueViewController else {return}
+      
+        
+        leagueViewController.sportStr = sportsArray[indexPath.item]
+        navigationController?.pushViewController(leagueViewController, animated: true)
+    }
+    
 }
 extension HomeViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var leagueViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as? LeaguesTableViewController
-
-        leagueViewController?.sportStr = sportsArray[indexPath.item]
-        navigationController?.pushViewController(leagueViewController!, animated: true)
-
-        
-        print(sportsArray[indexPath.item])
+        presenter?.checkIfUserCanContinue(indexPath: indexPath)
     }
+    
+    
 }
 
 extension HomeViewController:UICollectionViewDataSource{
     
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeSportsCollectionViewCell
-        cell.sportImageView.image = UIImage(named: sportsArray[indexPath.item])
-        cell.sportLabel.text = sportsArray[indexPath.item].capitalized
-       
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? HomeSportsCollectionViewCell
+        guard let cell = cell else {return UICollectionViewCell()}
+        cell.setUpHomeSportsCell(sport: sportsArray[indexPath.item])
         return cell
     }
     

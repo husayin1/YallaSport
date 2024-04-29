@@ -17,7 +17,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
     
     var sportStr = ""
     var leaguesInfoArray : [LeagueInfo] = []
-    
+    var activityIndicator:UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +27,11 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         
         let nibCell = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: "cell")
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        activityIndicator.isHidden = false
  
     }
     
@@ -39,32 +44,42 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let fixtureViewController = self.storyboard?.instantiateViewController(withIdentifier: "FixtureViewController") as? FixtureViewController
+        if sportStr == "tennis" {
+            let alert = UIAlertController(title: "Sorry!", message: "There is No Matches At The Current Time!", preferredStyle: UIAlertController.Style.alert)
+            
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+        
+            self.present(alert, animated: true, completion: nil)
+        
+        } else {
+            
+                let fixtureViewController = self.storyboard?.instantiateViewController(withIdentifier: "FixtureViewController") as? FixtureViewController
 
-        fixtureViewController?.sportType = self.sportStr
-        fixtureViewController?.leagueID = String(leaguesInfoArray[indexPath.row].league_key)
+                guard let fixtureViewController = fixtureViewController else {return}
+                
+                
+                
+                fixtureViewController.sportType = self.sportStr
+                fixtureViewController.leagueID = String(leaguesInfoArray[indexPath.row].league_key)
+                //
+                fixtureViewController.currentLeague = leaguesInfoArray[indexPath.row]
+            
+            navigationController?.pushViewController(fixtureViewController, animated: true)
+        }
         //
-        fixtureViewController?.currentLeague = leaguesInfoArray[indexPath.row]
-        //
-        navigationController?.pushViewController(fixtureViewController!, animated: true)
 
         
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeaguesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? LeaguesTableViewCell
+        guard let cell = cell else {return UITableViewCell()}
         
-        cell.leagueNameLabel.text = leaguesInfoArray[indexPath.row].league_name
-
-        let url = URL.init(string: leaguesInfoArray[indexPath.row].league_logo ?? "fixedLogo")
         
-        cell.leagueImageView.sd_setImage(with: url , placeholderImage: UIImage(named: "fixedLogo"))
+        cell.setUpLeaguesCell(league: leaguesInfoArray[indexPath.row])
         
-        cell.leagueImageView.layer.cornerRadius = 70
-        cell.backgroundImg.layer.borderWidth = 1
-        cell.backgroundImg.layer.cornerRadius = 35
-        cell.backgroundImg.layer.borderColor = UIColor(red: 0.0/255.0, green: 121.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
 
         return cell
     }
@@ -78,6 +93,8 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
     
     func showDataInUI(leagues: Leagues) {
         DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
             self.leaguesInfoArray = leagues.result
             self.tableView.reloadData()
        }

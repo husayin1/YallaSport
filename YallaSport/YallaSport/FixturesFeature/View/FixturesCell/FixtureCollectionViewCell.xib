@@ -42,21 +42,8 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASP-vM-sgP">
-                        <rect key="frame" x="16" y="126.00000000000001" width="95.333333333333329" height="21.666666666666671"/>
-                        <attributedString key="attributedText">
-                            <fragment content="Real Madrid">
-                                <attributes>
-                                    <font key="NSFont" metaFont="system" size="18"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <nil key="highlightedColor"/>
-                        <size key="shadowOffset" width="2" height="-1"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FC  Bayern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nh-jV-Pg1">
-                        <rect key="frame" x="256.66666666666669" y="126.00000000000001" width="87.333333333333314" height="21.666666666666671"/>
+                        <rect key="frame" x="246" y="126.00000000000001" width="98" height="21.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -76,13 +63,18 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FN-l2-Hhr">
+                        <rect key="frame" x="16" y="126" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="rW1-Hw-q4h" secondAttribute="trailing" constant="24" id="8He-iZ-3HC"/>
-                <constraint firstItem="ASP-vM-sgP" firstAttribute="top" secondItem="Zvt-cP-UsA" secondAttribute="bottom" constant="12" id="Gas-sm-BHq"/>
                 <constraint firstAttribute="trailing" secondItem="0Nh-jV-Pg1" secondAttribute="trailing" constant="16" id="I1E-JM-RN1"/>
                 <constraint firstItem="ccS-xl-UKF" firstAttribute="top" secondItem="fiW-QA-HsQ" secondAttribute="bottom" constant="38.670000000000002" id="NzM-h8-s3m"/>
                 <constraint firstItem="ccS-xl-UKF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="OeN-Hb-fet"/>
@@ -95,7 +87,9 @@
                 <constraint firstItem="Zvt-cP-UsA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="eTb-Iy-6Bi"/>
                 <constraint firstItem="Zvt-cP-UsA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="24" id="egt-4l-zz3"/>
                 <constraint firstItem="rW1-Hw-q4h" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="24" id="fI7-gW-Vtl"/>
-                <constraint firstItem="ASP-vM-sgP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="gwH-im-pC1"/>
+                <constraint firstItem="2FN-l2-Hhr" firstAttribute="top" secondItem="Zvt-cP-UsA" secondAttribute="bottom" constant="12" id="h0n-22-xcf"/>
+                <constraint firstItem="2FN-l2-Hhr" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="16" id="oXx-1N-jjN"/>
+                <constraint firstItem="0Nh-jV-Pg1" firstAttribute="leading" secondItem="rW1-Hw-q4h" secondAttribute="leading" id="t3P-8g-kvR"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -106,7 +100,7 @@
                 <outlet property="awayTeamImage" destination="rW1-Hw-q4h" id="GS7-EJ-Elt"/>
                 <outlet property="awayTeamLabel" destination="0Nh-jV-Pg1" id="Ru1-4J-OCf"/>
                 <outlet property="homeTeamImage" destination="Zvt-cP-UsA" id="io6-wM-hfC"/>
-                <outlet property="homeTeamLabel" destination="ASP-vM-sgP" id="QTt-KS-Vi4"/>
+                <outlet property="homeTeamLabel" destination="2FN-l2-Hhr" id="llp-jM-OTW"/>
                 <outlet property="matchDate" destination="fiW-QA-HsQ" id="H8Y-21-YfF"/>
                 <outlet property="matchTime" destination="ccS-xl-UKF" id="zCP-md-09C"/>
                 <outlet property="scoreLabel" destination="wUz-5r-i7q" id="s59-10-6K1"/>

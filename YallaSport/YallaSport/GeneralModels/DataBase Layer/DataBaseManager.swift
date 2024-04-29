@@ -17,37 +17,18 @@ class DataBaseManager {
     private static var context = appDelegate.persistentContainer.viewContext
     private static let entity = NSEntityDescription.entity(forEntityName: "League", in: context)
     
+    private static func contextSave() {
+         do {
+             try DataBaseManager.context.save()
+             print("League item saved successfully")
+         } catch {
+             print("Error saving league item: \(error)")
+         }
+     }
+
     
-//    static func addLeague (league : LeagueInfo){
-//        //managed obj
-//        let myLeague = NSManagedObject(entity: entity!, insertInto: context)
-//
-//        guard let urlStr = URL(string: league.league_logo ?? "https://purepng.com/public/uploads/large/purepng.com-league-of-legends-old-logoleague-of-legendslogooldoutdated-331523980009wndgt.png")   else{print("Invalid URL")
-//            return
-//        }
-//        SDWebImageDownloader.shared.downloadImage(with: urlStr) { image, data, error, _ in
-//            guard let imageData = data else {
-//                print("Error downloading image:", error?.localizedDescription ?? "Unknown error")
-//                return
-//            }
-//            myLeague.setValue(image, forKey: "league_logo")
-//        }
-//
-//    //
-//            myLeague.setValue(league.league_key, forKey: "league_key")
-//            //myLeague.setValue(league.league_logo, forKey: "league_logo")
-//            myLeague.setValue(league.league_name, forKey: "league_name")
-//
-//            do {
-//                print("saving League Done")
-//                try context.save()
-//            }catch let error as NSError{
-//                print("Error in saving League : ",error)
-//            }
-//        }
-//
     
-    static func addLeague(league: LeagueInfo , sportName : String) {
+    static func addLeague(league: LeagueInfo) {
         guard let entity = NSEntityDescription.entity(forEntityName: "League", in: context) else {
                   print("Entity is nil")
                   return
@@ -66,23 +47,19 @@ class DataBaseManager {
                           return
                       }
                       myLeague.setValue(data, forKey: "league_logo")
-
-                      do {
-                          try context.save()
-                          print("League saved successfully")
-                      } catch {
-                          print("Error saving league:", error.localizedDescription)
-                      }
+                      contextSave()
                   }
                   task.resume()
               } else {
+                  contextSave()
                   print("Invalid URL or nil logo URL provided")
               }
     }
     
+    
     static func fetchLeaguesFromDB () -> [League]{
         
-        var fetchRequest = NSFetchRequest<League>(entityName: "League")
+        let fetchRequest = NSFetchRequest<League>(entityName: "League")
         do{
             let leagues = try context.fetch(fetchRequest)
             return leagues
@@ -91,6 +68,23 @@ class DataBaseManager {
         }
         return []
     }
+    
+    static func deleteLeagueItem(league: League) {
+                let fetchRequest: NSFetchRequest<League> = League.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "league_key == %@", league.league_key!)
+                do {
+                    let fetchedLeagues = try context.fetch(fetchRequest)
+                    guard let leagueEntityToDelete = fetchedLeagues.first else {
+                        print("League not found in database")
+                        return
+                    }
+                    context.delete(leagueEntityToDelete)
+                    contextSave()
+                    print("League item deleted successfully")
+                } catch {
+                    print("Error deleting league item: \(error)")
+                }
+        }
     
 }
 

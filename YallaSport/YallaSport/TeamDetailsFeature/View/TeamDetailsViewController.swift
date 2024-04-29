@@ -31,7 +31,7 @@ class TeamDetailsViewController: UIViewController {
 //        let url = URL.init(string: team.team_logo ?? "fixedLogo")
 //        teamImg.sd_setImage(with: url , placeholderImage: UIImage(named: "fixedLogo"))
 //
-        teamImg.sd_setImage(with: URL(string: team.team_logo ?? ""), placeholderImage: UIImage(named: "car"))
+        teamImg.sd_setImage(with: URL(string: team.team_logo ?? ""), placeholderImage: UIImage(named: "basketballplayerplaceholder"))
         teamImg.layer.cornerRadius = 75
         
         coachName.text = "Coach Name: \(team.coaches?[0].coach_name! ?? "Unkown")"
@@ -58,12 +58,9 @@ extension TeamDetailsViewController : UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerViewCell
-        cell.playerName.text = team.players?[indexPath.row].player_name
-        cell.playerImage.sd_setImage(with: URL(string: team.players?[indexPath.row].player_image ?? ""), placeholderImage: UIImage(named: "car"))
-        cell.playerNo.text = team.players?[indexPath.row].player_number
-        cell.playerPosition.text = team.players?[indexPath.row].player_type
-//        cell.backgroundColor = UIColor(ciColor: .blue)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as? PlayerViewCell
+        guard let cell = cell else {return UITableViewCell()}
+        cell.setUpPlayerCell(player: (team.players?[indexPath.row]))
         return cell
     }
 }
