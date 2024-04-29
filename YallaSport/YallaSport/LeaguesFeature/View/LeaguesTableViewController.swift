@@ -27,6 +27,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         
         let nibCell = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: "cell")
+ 
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,7 +44,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         fixtureViewController?.sportType = self.sportStr
         fixtureViewController?.leagueID = String(leaguesInfoArray[indexPath.row].league_key)
         //
-        DataBaseManager.addLeague(league: leaguesInfoArray[indexPath.row])
+        fixtureViewController?.currentLeague = leaguesInfoArray[indexPath.row]
         //
         navigationController?.pushViewController(fixtureViewController!, animated: true)
 
@@ -63,12 +64,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         cell.leagueImageView.layer.cornerRadius = 70
         cell.backgroundImg.layer.borderWidth = 1
         cell.backgroundImg.layer.cornerRadius = 35
-        cell.backgroundImg.layer.borderColor = UIColor(red: 21/255, green: 52/255, blue: 72/255, alpha: 1.0).cgColor
-
-
-       // cell.contentView.layer.borderWidth = 1
-     //   cell.contentView.layer.borderColor = UIColor.purple.cgColor
-
+        cell.backgroundImg.layer.borderColor = UIColor(red: 0.0/255.0, green: 121.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
 
         return cell
     }
@@ -88,3 +84,4 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
     }
 
 }
+

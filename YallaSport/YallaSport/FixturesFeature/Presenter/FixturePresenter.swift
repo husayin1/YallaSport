@@ -51,4 +51,9 @@ class FixturesPresenter{
             }
         }
     }
+    
+    func addLeagueToDB (league : LeagueInfo){
+        DataBaseManager.addLeague(league: league)
+    }
+    
 }

@@ -37,7 +37,8 @@ class TeamDetailsViewController: UIViewController {
         coachName.text = "Coach Name: \(team.coaches?[0].coach_name! ?? "Unkown")"
         backgroundCoachImg.layer.borderWidth = 1
         backgroundCoachImg.layer.cornerRadius = 15
-        backgroundCoachImg.layer.borderColor = UIColor(red: 21/255, green: 52/255, blue: 72/255, alpha: 1.0).cgColor
+        backgroundCoachImg.layer.borderColor = UIColor(red: 0.0/255.0, green: 121.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+        //UIColor(red: 21/255, green: 52/255, blue: 72/255, alpha: 1.0).cgColor
         playersTableView.register(UINib(nibName: "PlayerViewCell", bundle: nil), forCellReuseIdentifier: "playerCell")
         
     }

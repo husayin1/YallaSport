@@ -19,13 +19,16 @@ class FixtureViewController: UIViewController, FixtureProtocol {
     var currentMatches = [FixturesInfo]()
     var previousMatches = [FixturesInfo]()
     var leagueTeams = [TeamsResult]()
+    var currentLeague : LeagueInfo!
     
     var sportType:String = ""
     var leagueID:String = ""
     
+    var presenter : FixturesPresenter!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let presenter = FixturesPresenter(sportType: sportType, leagueID: leagueID, fixtureVC: self)
+         presenter = FixturesPresenter(sportType: sportType, leagueID: leagueID, fixtureVC: self)
         presenter.fetchFixturesFromNetwork()
         presenter.fetchTeamsFromNetwork()
         
@@ -126,6 +129,9 @@ class FixtureViewController: UIViewController, FixtureProtocol {
     @IBAction func saveLeagueData(_ sender: UIButton) {
         //here to save leagueData y marwa
         sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        presenter.addLeagueToDB(league: currentLeague)
+        print("current league added")
+        
     }
 }
 
