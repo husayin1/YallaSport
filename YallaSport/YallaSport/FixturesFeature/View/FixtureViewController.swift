@@ -40,6 +40,8 @@ class FixtureViewController: UIViewController, FixtureProtocol {
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
         activityIndicator.isHidden = false
+        activityIndicator.color = .blue
+
         fixtureCollectionView.register(UINib(nibName: "FixtureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "fixtureCell")
         
         fixtureCollectionView.register(UINib(nibName: "TeamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "teamCell")
@@ -179,17 +181,29 @@ class FixtureViewController: UIViewController, FixtureProtocol {
            
            // If league doesn't exist in DB, add it
            if !leagueAlreadyExists {
-               let alert = UIAlertController(title: "Save League", message: "Are you sure you want to Save league ? ", preferredStyle: UIAlertController.Style.alert)
                
-               alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default){ [weak self] _ in
-                   print(self?.currentLeague!)
-                   self?.presenter.addLeagueToDB(league: (self?.currentLeague)!)
-                    sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-               })
+               AlertPresenter.positiveAlert(false, title: "SaveLeague", message: "Are you sure you want to Save league ? ", yesButton: "Save", noButton: "Cancel", on: self) {
+                   print(self.currentLeague!)
+                       self.presenter.addLeagueToDB(league: (self.currentLeague)!)
+                        sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+               } noHandler: {
+                   
+               }
+
                
-               alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+               
+               
+//               let alert = UIAlertController(title: "Save League", message: "Are you sure you want to Save league ? ", preferredStyle: UIAlertController.Style.alert)
+               
+//               alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default){ [weak self] _ in
+//                   print(self?.currentLeague!)
+//                   self?.presenter.addLeagueToDB(league: (self?.currentLeague)!)
+//                    sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+//               })
+               
+//               alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
            
-               self.present(alert, animated: true, completion: nil)
+//               self.present(alert, animated: true, completion: nil)
            
            } else if leagueAlreadyExists {
                print(leagueAlreadyExists)
@@ -224,13 +238,14 @@ extension FixtureViewController: UICollectionViewDelegate{
                 teamViewController?.team = teamDetails
                 navigationController?.pushViewController(teamViewController!, animated: true)
             } else {
-                
-                let alert = UIAlertController(title: "Sorry!", message: "We Cant Access This Team Now! ", preferredStyle: UIAlertController.Style.alert)
-                
-                
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-            
-                self.present(alert, animated: true, completion: nil)
+                AlertPresenter.positiveAlert(true, title: "Sorry!", message: "We Cant Access This Team Now! ", yesButton: "OK", noButton: "NO", on: self, yesHandler: {}, noHandler: {})
+//
+//                let alert = UIAlertController(title: "Sorry!", message: "We Cant Access This Team Now! ", preferredStyle: UIAlertController.Style.alert)
+//                
+//
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+//
+//                self.present(alert, animated: true, completion: nil)
             
             }
         default:
@@ -248,11 +263,29 @@ extension FixtureViewController: UICollectionViewDataSource{
         if kind == UICollectionView.elementKindSectionHeader {
             switch indexPath.section {
             case 0:
-                sectionName.collectionHeader.text = "UpComing Matches"
+                if currentMatches.count == 1 {
+                    
+                    sectionName.collectionHeader.text = "No UpComing Matches"
+                }else {
+                    
+                    sectionName.collectionHeader.text = "UpComing Matches"
+                }
             case 1:
-                sectionName.collectionHeader.text = "Latest Matches"
+                if previousMatches.count == 1 {
+                    
+                    sectionName.collectionHeader.text = "No Latest Matches"
+                }else{
+                    
+                    sectionName.collectionHeader.text = "Latest Matches"
+                }
             default:
-                sectionName.collectionHeader.text = "\(currentLeague.league_name) Teams"
+                if leagueTeams.count == 1{
+                    
+                    sectionName.collectionHeader.text = "No Teams"
+                }else {
+                    
+                    sectionName.collectionHeader.text = "\(currentLeague.league_name) Teams"
+                }
             }
         }
         return sectionName
@@ -349,19 +382,19 @@ extension FixtureViewController: UICollectionViewDataSource{
         switch section{
         case 0:
             if currentMatches.count == 0 {
-                currentMatches.append(FixturesInfo(league_key: 0, event_date: "UnExist", event_time: "Unavilable", event_home_team: "No Team", event_away_team: "No Team", home_team_logo: "TeamLogo", away_team_logo: "AwayLogo", event_ft_result: "0-0"))
+                currentMatches.append(FixturesInfo(league_key: 0, event_date: "Undeined", event_time: "0:00", event_home_team: "N/A", event_away_team: "N/A", home_team_logo: "N/A", away_team_logo: "N/A", event_ft_result: "0-0"))
                 return 1
             }
             return currentMatches.count
         case 1:
             if previousMatches.count == 0 {
-                previousMatches.append(FixturesInfo(league_key: 0, event_date: "UnExist", event_time: "Unavilable", event_home_team: "No Team", event_away_team: "No Team", home_team_logo: "TeamLogo", away_team_logo: "AwayLogo", event_ft_result: "0-0"))
+                previousMatches.append(FixturesInfo(league_key: 0, event_date: "Undefined", event_time: "0:00", event_home_team: "N/A", event_away_team: "N/A", home_team_logo: "N/A", away_team_logo: "N/A", event_ft_result: "0-0"))
                 
             }
             return previousMatches.count
         case 2:
             if leagueTeams.count == 0 {
-                leagueTeams.append(TeamsResult(team_key: 0,team_name: "NoTeams",team_logo: "NoLogo"))
+                leagueTeams.append(TeamsResult(team_key: 0,team_name: "Undefined",team_logo: "N/A"))
             }
             return leagueTeams.count
         default:

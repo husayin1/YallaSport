@@ -37,12 +37,15 @@ class HomeViewController: UIViewController,HomeViewProtocol{
     }
     
     func showAlert() {
-        let alert = UIAlertController(title: "Sorry!", message: "It seems you are not connected to the internet. Please check your network connection and try again.", preferredStyle: UIAlertController.Style.alert)
+        AlertPresenter.positiveAlert(false, title:  "Sorr!", message: "It seems you are not connected to the internet. Please check your network connection and try again.", yesButton: "OK", noButton: nil, on: self, yesHandler: {}, noHandler: {})
+       
+
+//        let alert = UIAlertController(title: "Sorry!", message: "It seems you are not connected to the internet. Please check your network connection and try again.", preferredStyle: UIAlertController.Style.alert)
         
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
     
-        self.present(alert, animated: true, completion: nil)
+//        self.present(alert, animated: true, completion: nil)
     
     }
     

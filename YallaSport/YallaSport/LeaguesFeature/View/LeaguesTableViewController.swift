@@ -12,14 +12,21 @@ protocol LeaguesViewProtocol {
     func showDataInUI (leagues : Leagues)
 }
 
-class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
-   
-    
+class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol ,UISearchResultsUpdating{
     var sportStr = ""
     var leaguesInfoArray : [LeagueInfo] = []
+    var searchController = UISearchController(searchResultsController: nil)
+    var filteredLeagues:[LeagueInfo]?
     var activityIndicator:UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search For League"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
         
         let presenter = LeaguesPresenter(leaguesVC: self)
         presenter.getLeaguesFromNetwork(sportStr: sportStr)
@@ -32,6 +39,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
         activityIndicator.isHidden = false
+        activityIndicator.color = .blue
  
     }
     
@@ -40,18 +48,12 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leaguesInfoArray.count
+        return filteredLeagues?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if sportStr == "tennis" {
-            let alert = UIAlertController(title: "Sorry!", message: "There is No Matches At The Current Time!", preferredStyle: UIAlertController.Style.alert)
-            
-            
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-        
-            self.present(alert, animated: true, completion: nil)
-        
+            AlertPresenter.positiveAlert(true, title: "Sorry!", message: "There is No Matches At The Current Time!", yesButton: "OK", noButton: "Cancel", on: self, yesHandler: {}, noHandler: {})
         } else {
             
                 let fixtureViewController = self.storyboard?.instantiateViewController(withIdentifier: "FixtureViewController") as? FixtureViewController
@@ -61,9 +63,9 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
                 
                 
                 fixtureViewController.sportType = self.sportStr
-                fixtureViewController.leagueID = String(leaguesInfoArray[indexPath.row].league_key)
+            fixtureViewController.leagueID = String(Int(filteredLeagues?[indexPath.row].league_key ?? 0))
                 //
-                fixtureViewController.currentLeague = leaguesInfoArray[indexPath.row]
+            fixtureViewController.currentLeague = filteredLeagues?[indexPath.row]
             
             navigationController?.pushViewController(fixtureViewController, animated: true)
         }
@@ -78,7 +80,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
         guard let cell = cell else {return UITableViewCell()}
         
         
-        cell.setUpLeaguesCell(league: leaguesInfoArray[indexPath.row])
+        cell.setUpLeaguesCell(league: (filteredLeagues?[indexPath.row])!)
         
 
         return cell
@@ -96,8 +98,20 @@ class LeaguesTableViewController: UITableViewController , LeaguesViewProtocol {
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
             self.leaguesInfoArray = leagues.result
+            self.filteredLeagues = self.leaguesInfoArray
             self.tableView.reloadData()
        }
+    }
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+            filteredLeagues = leaguesInfoArray.filter{
+                league in
+                return league.league_name.localizedCaseInsensitiveContains(searchText)
+            }
+        }else{
+            filteredLeagues = leaguesInfoArray
+        }
+        self.tableView.reloadData()
     }
 
 }

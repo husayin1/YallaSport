@@ -11,8 +11,15 @@ import CoreData
 import SDWebImage
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
+protocol CoreDataProtocol {
+    static func addLeague(league: LeagueInfo)
+    static func fetchLeaguesFromDB () -> [League]
+    static func deleteLeagueItem(league: League)
+    static func getAllLeagues()->[LeagueInfo]
+    static func deleteDataFromCoreData()
+}
 
-class DataBaseManager {
+class DataBaseManager:CoreDataProtocol {
     
     private static var context = appDelegate.persistentContainer.viewContext
     private static let entity = NSEntityDescription.entity(forEntityName: "League", in: context)
@@ -85,6 +92,46 @@ class DataBaseManager {
                     print("Error deleting league item: \(error)")
                 }
         }
+    
+    
+    
+    static func getAllLeagues()->[LeagueInfo]{
+        var leagues:[LeagueInfo] = []
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>()
+        
+        fetchRequest.entity = NSEntityDescription.entity(forEntityName: "League", in: context)
+        
+        do{
+            let fetchedLeagues = try context.fetch(fetchRequest) as! [League]
+            for leagueItem in fetchedLeagues {
+                if let leagueName = leagueItem.league_name {
+                    let leagueKey = Int(truncating: leagueItem.league_key ?? 0)
+                    print("league key from cd->",leagueItem.league_key)
+                    var logoString: String?
+                    if let logoData = leagueItem.league_logo {
+                        logoString = String(data: logoData, encoding: .utf8)
+                    }
+                    let league = LeagueInfo(league_key: leagueKey, league_name: leagueName,league_logo: logoString)
+                    leagues.append(league)
+                }
+            }
+        }catch{
+            print(error)
+        }
+        return leagues
+    }
+    
+    static func deleteDataFromCoreData(){
+        do{
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "League")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            try context.execute(deleteRequest)
+            try context.save()
+        }catch let err{
+            print("ERROR=======>\n")
+            print(err.localizedDescription)
+        }
+    }
     
 }
 

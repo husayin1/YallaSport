@@ -94,6 +94,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jG7-ut-SK0">
+                                <rect key="frame" x="327" y="100" width="50" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="eraser" catalog="system"/>
+                                <connections>
+                                    <action selector="clearLeagues:" destination="IB2-WT-kNO" eventType="touchUpInside" id="WZJ-mN-lud"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Leagues" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyL-fO-4y8">
+                                <rect key="frame" x="16" y="107" width="303" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7la-Bz-DfX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -352,6 +368,7 @@
     <resources>
         <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="bookmark.fill" catalog="system" width="110" height="128"/>
+        <image name="eraser" catalog="system" width="128" height="119"/>
         <image name="noFavs" width="2000" height="2000"/>
         <image name="sportscourt" catalog="system" width="128" height="83"/>
         <namedColor name="AccentColor">

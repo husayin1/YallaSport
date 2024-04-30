@@ -34,6 +34,7 @@
 		56186EB22BDBC7420017185F /* FixtureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56186EB12BDBC7420017185F /* FixtureViewController.swift */; };
 		56186EB42BDBC8C60017185F /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56186EB32BDBC8C60017185F /* Fixtures.swift */; };
 		56186EC02BDBF32B0017185F /* FixturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56186EBF2BDBF32A0017185F /* FixturePresenter.swift */; };
+		5625904B2BE111A700F0EB36 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5625904A2BE111A700F0EB36 /* AlertPresenter.swift */; };
 		562E62EF2BDC093A00B89C22 /* FixtureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 562E62ED2BDC093A00B89C22 /* FixtureCollectionViewCell.xib */; };
 		562E62F02BDC093A00B89C22 /* FixtureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E62EE2BDC093A00B89C22 /* FixtureCollectionViewCell.swift */; };
 		562E62F32BDC097C00B89C22 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E62F12BDC097C00B89C22 /* TeamCollectionViewCell.swift */; };
@@ -98,6 +99,7 @@
 		56186EB12BDBC7420017185F /* FixtureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureViewController.swift; sourceTree = "<group>"; };
 		56186EB32BDBC8C60017185F /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		56186EBF2BDBF32A0017185F /* FixturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePresenter.swift; sourceTree = "<group>"; };
+		5625904A2BE111A700F0EB36 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		562E62ED2BDC093A00B89C22 /* FixtureCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixtureCollectionViewCell.xib; sourceTree = "<group>"; };
 		562E62EE2BDC093A00B89C22 /* FixtureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureCollectionViewCell.swift; sourceTree = "<group>"; };
 		562E62F12BDC097C00B89C22 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -176,8 +178,9 @@
 		56182C502BD68835005A46D8 /* YallaSport */ = {
 			isa = PBXGroup;
 			children = (
-				565D834F2BE01CCD00236B09 /* FavoriteFeature */,
 				56182C552BD68835005A46D8 /* ViewController.swift */,
+				562590492BE1119500F0EB36 /* Utility */,
+				565D834F2BE01CCD00236B09 /* FavoriteFeature */,
 				56AB882D2BDEB18B00B594E9 /* HomeFeature */,
 				56AB88282BDEB14D00B594E9 /* LeaguesFeature */,
 				56AB88202BDEB0A200B594E9 /* FixturesFeature */,
@@ -212,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				56182C8E2BD6B7B9005A46D8 /* Network.swift */,
-				565D834B2BE0193B00236B09 /* Reachability.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -234,6 +236,15 @@
 				562E62F22BDC097C00B89C22 /* TeamCollectionViewCell.xib */,
 			);
 			path = TeamCell;
+			sourceTree = "<group>";
+		};
+		562590492BE1119500F0EB36 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				5625904A2BE111A700F0EB36 /* AlertPresenter.swift */,
+				565D834B2BE0193B00236B09 /* Reachability.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		565D834F2BE01CCD00236B09 /* FavoriteFeature */ = {
@@ -735,6 +746,7 @@
 				56182C522BD68835005A46D8 /* AppDelegate.swift in Sources */,
 				43B889F72BDABDA1004EC2BF /* LeaguesPresenter.swift in Sources */,
 				56186EB22BDBC7420017185F /* FixtureViewController.swift in Sources */,
+				5625904B2BE111A700F0EB36 /* AlertPresenter.swift in Sources */,
 				56182C8F2BD6B7B9005A46D8 /* Network.swift in Sources */,
 				56182C9E2BD6FBB3005A46D8 /* Leagues.swift in Sources */,
 				434DBFCC2BDCEDBC00CB08B6 /* DataBaseManager.swift in Sources */,

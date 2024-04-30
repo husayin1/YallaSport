@@ -52,10 +52,21 @@ class FavouriteViewController: UIViewController   {
     }
     
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+    @IBAction func clearLeagues(_ sender: Any) {
+        if leaguesArray.count > 0 {
+            
+            print("Clear Now")
+            AlertPresenter.negativeAlert(false, title: "Clear All Leagues", message: "Are you sure you want to clear your saved list ?", yesButton: "Sure", noButton: "Cancel", on: self, yesHandler: {
+                
+                DataBaseManager.deleteDataFromCoreData()
+                self.leaguesArray = DataBaseManager.fetchLeaguesFromDB()
+                self.favTableView.reloadData()
+                self.viewWillAppear(true)
+            }, noHandler: {})
+        }
+       
     }
+    
     
 }
 
@@ -86,28 +97,25 @@ extension  FavouriteViewController : UITableViewDataSource {
 extension FavouriteViewController : UITableViewDelegate{
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let alert = UIAlertController(title: "Delete League", message: "Are you sure you want to delete league ? ", preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive){ [weak self] _ in
-            DataBaseManager.deleteLeagueItem(league: (self?.leaguesArray[indexPath.row])!)
+        AlertPresenter.negativeAlert(false, title: "Delete League", message: "Are you sure you want to delete league ? ", yesButton: "YES", noButton: "NO", on: self, yesHandler: {
+            DataBaseManager.deleteLeagueItem(league: (self.leaguesArray[indexPath.row]))
             
-            self?.leaguesArray = DataBaseManager.fetchLeaguesFromDB()
-            self?.favTableView.reloadData()
-            if(self?.leaguesArray.count == 0) {
-                self?.viewWillAppear(true)
+            self.leaguesArray = DataBaseManager.fetchLeaguesFromDB()
+            self.favTableView.reloadData()
+            if(self.leaguesArray.count == 0) {
+                self.viewWillAppear(true)
             }
+            
+        }, noHandler: {
+            
         })
-        
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-        
-        
-        // delete from data base ya husayn
-        
-        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if NetworkManager.networkM.IsInternetAvailable() {
@@ -118,27 +126,18 @@ extension FavouriteViewController : UITableViewDelegate{
                 
                 
                 fixtureViewController.sportType = "football"
-                fixtureViewController.leagueID = String(describing:leaguesArray[indexPath.row].league_key)
-                //
-            print(leaguesArray[indexPath.row].league_key)
+                fixtureViewController.leagueID =
+            String(describing: Int(truncating: leaguesArray[indexPath.row].league_key ?? 175))
             let league : LeagueInfo = LeagueInfo(league_key: Int(leaguesArray[indexPath.row].league_key ?? 0), league_name: leaguesArray[indexPath.row].league_name ?? "Unkown")
                 fixtureViewController.currentLeague = league
             
             navigationController?.pushViewController(fixtureViewController, animated: true)
+        }else{
+            AlertPresenter.positiveAlert(false, title:  "Sorr!", message: "It seems you are not connected to the internet. Please check your network connection and try again.", yesButton: "OK", noButton: nil, on: self, yesHandler: {}, noHandler: {})
+           
         }
     }
     
-    func createAlert()
-    {
-        // create the alert
-        let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        
-        //   alert.addAction(UIAlertAction(title: "CANCEL", style: UIAlertAction.Style.default, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
     
     
 }

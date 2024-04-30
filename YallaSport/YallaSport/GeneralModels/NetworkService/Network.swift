@@ -48,7 +48,7 @@ class Network :NetworkLayerProtocol{
     }
     
     
-    
+    //fetch teams
     static func fetchTeamsFromNetwork (sportType: String,leagueId : String , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
         
         let url = URL(string: "\(base_Url)\(sportType)/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)")
@@ -84,33 +84,7 @@ class Network :NetworkLayerProtocol{
         
         
      }
-   /*
-    static func fetchTeamsFromNetwork (leagueId : String , completionHnadler : @escaping (Result<Teams , Error>) ->()) {
-        AF.request("https://apiv2.allsportsapi.com/football/?&met=Teams&leagueId=\(leagueId)&APIkey=\(apiKey)").validate().response { response in
-            switch response.result {
-            case .success(let teamsData) :
-                do {
-                    var teams = try JSONDecoder().decode(Teams.self, from: teamsData!)
-                    completionHnadler(.success(teams))
-                    print("fetchTeamsFromNetwork",teams.result[0].team_name!)
-                }
-                catch {
-                    completionHnadler(.failure(error))
-                    print("Error ")
-                }
-            
-                
-                
-            case .failure(let error):
-                completionHnadler(.failure(error))
-            }
-        }
-        
-        
-    }
-    */
-
-    
+//fetch Fixtures
     static func fetchFixtures(sportType sport:String,leagueID: String,from:String,to :String,completionHandler completion: @escaping(Result<Fixtures,Error>) -> (Void)) {
          let fixuresUrl = URL(string: "\(base_Url)\(sport)/?met=Fixtures&APIkey=\(apiKey)&from=\(from)&leagueId=\(leagueID)&to=\(to)")
          
