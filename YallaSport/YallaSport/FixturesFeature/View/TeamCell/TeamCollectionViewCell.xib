@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCell" id="gTV-IL-0wX" customClass="TeamCollectionViewCell" customModule="YallaSport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="126" height="134"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="126" height="134"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AlMasry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v0-pt-a3i">
+                        <rect key="frame" x="4" y="102" width="118" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car" translatesAutoresizingMaskIntoConstraints="NO" id="HKe-yV-XzS">
+                        <rect key="frame" x="18" y="8" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="Ewc-mq-jc7"/>
+                            <constraint firstAttribute="width" constant="90" id="tmC-QL-W0k"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="tnL-4h-ub0"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="6v0-pt-a3i" secondAttribute="trailing" constant="4" id="4OL-Ta-uPL"/>
+                <constraint firstAttribute="trailing" secondItem="HKe-yV-XzS" secondAttribute="trailing" constant="18" id="DPL-Ef-pXK"/>
+                <constraint firstItem="HKe-yV-XzS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="KVL-vn-iKk"/>
+                <constraint firstItem="6v0-pt-a3i" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="4" id="LCp-Px-E1b"/>
+                <constraint firstItem="6v0-pt-a3i" firstAttribute="centerX" secondItem="HKe-yV-XzS" secondAttribute="centerX" id="PkO-0O-td5"/>
+                <constraint firstItem="HKe-yV-XzS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="d7H-sL-6Pv"/>
+                <constraint firstItem="HKe-yV-XzS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="dke-2n-Po9"/>
+                <constraint firstItem="HKe-yV-XzS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="esQ-zZ-pJE"/>
+                <constraint firstItem="6v0-pt-a3i" firstAttribute="top" secondItem="HKe-yV-XzS" secondAttribute="bottom" constant="4" id="qsH-Aa-sUN"/>
+                <constraint firstItem="HKe-yV-XzS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="y3f-r8-m19"/>
+            </constraints>
+            <size key="customSize" width="126" height="134"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <integer key="value" value="30"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="teamImage" destination="HKe-yV-XzS" id="chW-mZ-yvc"/>
+                <outlet property="teamName" destination="6v0-pt-a3i" id="cv0-li-Wme"/>
+            </connections>
+            <point key="canvasLocation" x="87.022900763358777" y="18.30985915492958"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="car" width="270" height="148"/>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
