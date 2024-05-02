@@ -119,7 +119,7 @@
 		562E62F12BDC097C00B89C22 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		562E62F22BDC097C00B89C22 /* TeamCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamCollectionViewCell.xib; sourceTree = "<group>"; };
 		565D834B2BE0193B00236B09 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		565D834D2BE0197800236B09 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePresenter.swift; path = YallaSport/GeneralModels/NetworkService/HomePresenter.swift; sourceTree = SOURCE_ROOT; };
+		565D834D2BE0197800236B09 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePresenter.swift; path = YallaSport/HomeFeature/Presentr/HomePresenter.swift; sourceTree = SOURCE_ROOT; };
 		56AB88332BDEBA5C00B594E9 /* PlayerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewCell.swift; sourceTree = "<group>"; };
 		56AB88342BDEBA5C00B594E9 /* PlayerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerViewCell.xib; sourceTree = "<group>"; };
 		56D9C0C82BDED6AF0067C588 /* HeaderCollectionViewReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewReusableView.swift; sourceTree = "<group>"; };
@@ -478,19 +478,10 @@
 		56AB882D2BDEB18B00B594E9 /* HomeFeature */ = {
 			isa = PBXGroup;
 			children = (
-				56AB88302BDEB19C00B594E9 /* Model */,
+				56DA69212BE443070089E6BA /* Presentr */,
 				56AB882F2BDEB19800B594E9 /* View */,
-				56AB882E2BDEB19400B594E9 /* Presenter */,
 			);
 			path = HomeFeature;
-			sourceTree = "<group>";
-		};
-		56AB882E2BDEB19400B594E9 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				565D834D2BE0197800236B09 /* HomePresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		56AB882F2BDEB19800B594E9 /* View */ = {
@@ -500,13 +491,6 @@
 				4385E5C32BD9469E002BEFC8 /* HomeViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		56AB88302BDEB19C00B594E9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		56AB88312BDEB1B000B594E9 /* HomeViewCell */ = {
@@ -524,6 +508,14 @@
 				56AB88342BDEBA5C00B594E9 /* PlayerViewCell.xib */,
 			);
 			path = PlayerViewCell;
+			sourceTree = "<group>";
+		};
+		56DA69212BE443070089E6BA /* Presentr */ = {
+			isa = PBXGroup;
+			children = (
+				565D834D2BE0197800236B09 /* HomePresenter.swift */,
+			);
+			path = Presentr;
 			sourceTree = "<group>";
 		};
 		64FFC5EBFA0631204CDC498D /* Pods */ = {
