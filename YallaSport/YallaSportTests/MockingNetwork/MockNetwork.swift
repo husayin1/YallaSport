@@ -10,8 +10,10 @@ import Foundation
 
 protocol MockingNetworkProtocol{
     func fetchTeamsFromNetwork (sportType: String,leagueId : String , completionHnadler : @escaping (Result<Teams , Error>) ->())
-   
+    
     func fetchLeagues(sportType sport:String,completionHandler completion: @escaping(Result<Leagues,Error>) -> Void)
+    
+    func fetchFixtures(sportType: String,leagueID: String,from:String,to :String, completionHandler:@escaping(Result<Fixtures,Error>)->(Void))
 }
 
 class MockNetwork {
@@ -87,6 +89,20 @@ class MockNetwork {
             ]
         ]
     ]
+    let fakeFixturesJson: [String:Any] = ["success":1
+                                          ,"result":[
+                                            [
+                                                "league_key":205,
+                                                "event_date":"2024-05-01",
+                                                "event_time":"22:00",
+                                                "event_home_team":"Al-Masry",
+                                                "event_away_team":"Ismaily",
+                                                "home_team_logo":"Al-Masry Logo",
+                                                "away_team_logo":"Ismaily",
+                                                "event_ft_result":"0-0"
+                                            ]
+                                          ]
+    ]
     
     enum ErrorResponse : Error{
         case errorResponse
@@ -137,5 +153,23 @@ extension MockNetwork : MockingNetworkProtocol{
                 }
        
         
+    }
+    
+    func fetchFixtures(sportType: String,leagueID: String,from:String,to :String, completionHandler:@escaping(Result<Fixtures,Error>)->(Void)){
+        var result:Fixtures?
+        
+        do{
+            let responseData = try JSONSerialization.data(withJSONObject: fakeFixturesJson)
+            result = try JSONDecoder().decode(Fixtures.self, from: responseData)
+            
+        }catch let err{
+            print(err.localizedDescription)
+        }
+        
+        if isError {
+            completionHandler(.failure(ErrorResponse.errorResponse))
+        }else{
+            completionHandler(.success(result!))
+        }
     }
 }

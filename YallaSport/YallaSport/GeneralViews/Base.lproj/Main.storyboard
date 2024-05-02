@@ -139,7 +139,7 @@
             </objects>
             <point key="canvasLocation" x="3510.6870229007632" y="674.64788732394368"/>
         </scene>
-        <!--Item-->
+        <!--Teams-->
         <scene sceneID="TXG-yf-uRf">
             <objects>
                 <viewController storyboardIdentifier="FavTeamsViewController" id="Jkh-hO-DcC" customClass="FavTeamsViewController" customModule="YallaSport" customModuleProvider="target" sceneMemberID="viewController">
@@ -175,7 +175,7 @@
                             <constraint firstItem="wEu-w0-sy9" firstAttribute="trailing" secondItem="CFM-0T-ilf" secondAttribute="trailing" id="fgO-Dx-SWE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="8kW-PI-FvT"/>
+                    <tabBarItem key="tabBarItem" title="Teams" image="heart.fill" catalog="system" id="8kW-PI-FvT"/>
                     <connections>
                         <outlet property="favTeamsTableView" destination="wEu-w0-sy9" id="PLg-pv-Gvm"/>
                         <outlet property="noFavImg" destination="nn9-GY-9oS" id="Qik-Z2-aAV"/>
@@ -519,6 +519,7 @@
         <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="bookmark.fill" catalog="system" width="110" height="128"/>
         <image name="eraser" catalog="system" width="128" height="119"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="noFavs" width="2000" height="2000"/>
         <image name="sportscourt" catalog="system" width="128" height="83"/>
         <namedColor name="AccentColor">

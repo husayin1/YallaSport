@@ -21,7 +21,7 @@ class Network :NetworkLayerProtocol{
     static let apiKey:String = "0b11a6a325539dbf2de2d49ca9f6c29c2fa7417fe868385cd36d18a939079788"
     static let base_Url:String = "https://apiv2.allsportsapi.com/"
     //private constructor
-    private init(){}
+//    private init(){}
     //fetche leagues from network
    static func fetchLeagues(sportType sport:String,completionHandler completion: @escaping(Result<Leagues,Error>) -> Void) {
         let url = URL(string: "\(base_Url)\(sport)/?met=Leagues&APIkey=\(apiKey)")
