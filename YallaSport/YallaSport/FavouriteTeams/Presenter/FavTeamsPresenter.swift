@@ -22,4 +22,7 @@ class FavTeamsPresenter {
         DataBaseManager.deleteTeamItem(team: team)
 
     }
+    func deleteAllTeams(){
+        DataBaseManager.deleteAllTeamsFromCoreData()
+    }
 }

@@ -17,5 +17,8 @@ class TeamDetailsPresenter {
         DataBaseManager.addTeam(team: team)
         
     }
+    func fetchTeamsSaved()->[TeamsDB]{
+        DataBaseManager.fetchTeamsFromDB()
+    }
     
 }

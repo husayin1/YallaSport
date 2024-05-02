@@ -49,7 +49,14 @@ class FavTeamsViewController: UIViewController , ViewProtocol {
     }
     
     
-
+    @IBAction func clearTeams(_ sender: Any) {
+        AlertPresenter.negativeAlert(false, title: "Delete All Teams", message: "Are you sure you want to delete All Teams", yesButton: "Delete", noButton: "Cancel", on: self, yesHandler: {
+            
+            self.favPresenter.deleteAllTeams()
+            self.viewWillAppear(true)
+        }, noHandler: {})
+    }
+    
     
     
 }
@@ -70,7 +77,7 @@ extension  FavTeamsViewController : UITableViewDataSource {
             cell.leagueImageView.image = UIImage(data: imageData)
         }
         else {
-            cell.leagueImageView.image = UIImage(named: "fixedLogo")
+            cell.leagueImageView.image = UIImage(named: "team")
         }
         
         cell.leagueImageView.layer.cornerRadius = 70
@@ -97,7 +104,7 @@ extension FavTeamsViewController : UITableViewDelegate{
         
      
         
-        AlertPresenter.negativeAlert(false, title: "Delete League", message: "Are you sure you want to delete league ? ", yesButton: "YES", noButton: "NO", on: self, yesHandler: {
+        AlertPresenter.negativeAlert(false, title: "Delete Team", message: "Are you sure you want to delete Team ? ", yesButton: "YES", noButton: "NO", on: self, yesHandler: {
             self.favPresenter.deleteItem(team: self.teamsArray[indexPath.row])
             self.teamsArray = self.favPresenter.fetchFavouritTeamsFromDB()
             self.favTeamsTableView.reloadData()

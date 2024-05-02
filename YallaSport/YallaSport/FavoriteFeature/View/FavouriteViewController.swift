@@ -158,7 +158,7 @@ extension FavouriteViewController : UITableViewDelegate{
             
             navigationController?.pushViewController(fixtureViewController, animated: true)
         }else{
-            AlertPresenter.positiveAlert(false, title:  "Sorr!", message: "It seems you are not connected to the internet. Please check your network connection and try again.", yesButton: "OK", noButton: nil, on: self, yesHandler: {}, noHandler: {})
+            AlertPresenter.positiveAlert(true, title:  "Sorry!", message: "It seems you are not connected to the internet. Please check your network connection and try again.", yesButton: "OK",noButton: nil, on: self, yesHandler: {}, noHandler: {})
            
         }
     }

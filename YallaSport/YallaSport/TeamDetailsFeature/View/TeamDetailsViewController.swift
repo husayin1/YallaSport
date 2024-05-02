@@ -42,11 +42,29 @@ class TeamDetailsViewController: UIViewController ,ViewProtocol {
         
     }
     @IBAction func addTeam(_ sender: Any) {
-        self.presenter.addTeamInDB(team: self.team)
+        if checkIfTeamExist(){
+            AlertPresenter.positiveAlert(true, title: "Don't Worry", message: "This team Already Saved!", yesButton: "Ok", noButton: nil, on: self, yesHandler: {}, noHandler: {})
+        }else{
+            AlertPresenter.positiveAlert(false, title: "Save Team", message: "Are you sure you want to save this team ?.", yesButton: "Save", noButton: "Cancel", on: self, yesHandler: {
+                
+                self.presenter.addTeamInDB(team: self.team)
+            }, noHandler: {})
+        }
     }
     
     func bindWithUI() {
         print("add team done")
+    }
+    func checkIfTeamExist()->Bool{
+        var teamAlreadyExists = false
+        let fetchedTeams = presenter.fetchTeamsSaved()
+        for item in fetchedTeams {
+            if Int(item.team_key ?? 0) == team.team_key {
+                teamAlreadyExists = true
+                break
+            }
+        }
+        return teamAlreadyExists
     }
 }
 

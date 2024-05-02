@@ -195,6 +195,19 @@ class DataBaseManager:CoreDataProtocol {
                 }
         }
     
+    static func deleteAllTeamsFromCoreData(){
+        do{
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TeamsDB")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            try context.execute(deleteRequest)
+            try context.save()
+        }catch let err{
+            print("ERROR=======>\n")
+            print(err.localizedDescription)
+        }
+    }
+    
+    
     
 }
 

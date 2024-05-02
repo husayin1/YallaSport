@@ -19,7 +19,7 @@ class AlertPresenter {
         
         if !(oneButton ?? true){
             
-            alert.addAction(UIAlertAction(title: noButton, style: UIAlertAction.Style.cancel) { _ in
+            alert.addAction(UIAlertAction(title: noButton ?? "Cancel", style: UIAlertAction.Style.cancel) { _ in
                 noHandler()
             })
         }
@@ -35,7 +35,7 @@ class AlertPresenter {
             yesHandler()
         })
         
-        if !(oneButton ?? false){
+        if !(oneButton ?? true){
             
             alert.addAction(UIAlertAction(title: noButton, style: UIAlertAction.Style.cancel) { _ in
                 noHandler()

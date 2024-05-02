@@ -238,7 +238,7 @@ extension FixtureViewController: UICollectionViewDelegate{
                 teamViewController?.team = teamDetails
                 navigationController?.pushViewController(teamViewController!, animated: true)
             } else {
-                AlertPresenter.positiveAlert(true, title: "Sorry!", message: "We Cant Access This Team Now! ", yesButton: "OK", noButton: "NO", on: self, yesHandler: {}, noHandler: {})
+                AlertPresenter.positiveAlert(true, title: "Sorry!", message: "We Cant Access This Team Now! ", yesButton: "OK", noButton: nil, on: self, yesHandler: {}, noHandler: {})
 //
 //                let alert = UIAlertController(title: "Sorry!", message: "We Cant Access This Team Now! ", preferredStyle: UIAlertController.Style.alert)
 //                
