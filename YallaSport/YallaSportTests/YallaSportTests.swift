@@ -9,28 +9,78 @@ import XCTest
 @testable import YallaSport
 
 final class YallaSportTests: XCTestCase {
+    
+    var networkMockObj : MockingNetworkProtocol?
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        networkMockObj = MockNetwork(isError: false)
+ 
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        networkMockObj = nil
+
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testFetchLeagues(){
+        let expect = expectation(description: "test Fetch Leagues from network")
+        
+        Network.fetchLeagues(sportType: "football") { result in
+            switch result{
+            case .success(let teams) :
+                XCTAssertNotNil(teams.result)
+                expect.fulfill()
+            case .failure(_):
+                XCTFail("Failed")
+            }
         }
+        waitForExpectations(timeout: 5)
+    }
+    
+    
+    func testFetchMockLeagues(){
+        networkMockObj?.fetchLeagues(sportType: "football", completionHandler: { result  in
+            switch result{
+            case .success(let leagues) :
+                XCTAssertNotNil(leagues.result)
+                
+            case .failure(_):
+                XCTFail("Failed")
+            }
+        })
+        
+    }
+  
+    
+    
+    func testFetchTeams(){
+        let expect = expectation(description: "test Fetch Teams from network")
+        Network.fetchTeamsFromNetwork(sportType: "football", leagueId: "96") { result in
+            switch result{
+            case .success(let teams) :
+                XCTAssertNotNil(teams.result)
+            //    XCTAssertEqual(teams.result?[0].players?[0].player_key,3063582184)
+                expect.fulfill()
+            case .failure(_):
+                XCTFail("Failed")
+            }
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testFetchMockTeams (){
+        networkMockObj?.fetchTeamsFromNetwork(sportType: "football", leagueId: "96", completionHnadler: { result in
+            switch result {
+                case .success(let teams) :
+                    XCTAssertNotNil(teams.result)
+                case .failure(_):
+                    XCTFail("Failed")
+            }
+        })
     }
 
 }

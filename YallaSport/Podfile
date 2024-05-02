@@ -12,6 +12,7 @@ target 'YallaSport' do
   pod 'SwiftyOnboard'
   pod 'SplashScreen'
   pod 'ReachabilitySwift'
+  pod 'lottie-ios'
 
 
   target 'YallaSportTests' do

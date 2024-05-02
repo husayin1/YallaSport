@@ -5,4 +5,9 @@
         <attribute name="league_logo" optional="YES" attributeType="Binary"/>
         <attribute name="league_name" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="TeamsDB" representedClassName="TeamsDB" syncable="YES" codeGenerationType="class">
+        <attribute name="team_key" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="team_logo" optional="YES" attributeType="Binary"/>
+        <attribute name="team_name" optional="YES" attributeType="String"/>
+    </entity>
 </model>

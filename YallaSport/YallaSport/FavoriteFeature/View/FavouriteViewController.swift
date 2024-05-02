@@ -7,9 +7,15 @@
 
 import UIKit
 
-class FavouriteViewController: UIViewController   {
+
+
+class FavouriteViewController: UIViewController ,ViewProtocol  {
+  
+    var leaguesArray :  [League]!
+    var favPresenter : FavouritePresenter!
+
     
-    var leaguesArray = DataBaseManager.fetchLeaguesFromDB()
+   
     var isConnected = true
     
     @IBOutlet weak var favTableView: UITableView!
@@ -20,10 +26,14 @@ class FavouriteViewController: UIViewController   {
         super.viewDidLoad()
         self.favTableView.delegate = self
         self.favTableView.dataSource = self
+        
+        favPresenter = FavouritePresenter()
+        self.favPresenter.attachViewcontroller(favouriteVC: self)
+        leaguesArray = favPresenter.fetchFavouritsFromDB()
+        
         let nibCell = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         favTableView.register(nibCell, forCellReuseIdentifier: "cell")
         
-        leaguesArray = DataBaseManager.fetchLeaguesFromDB()
         if leaguesArray.count == 0{
             noFavImg.isHidden = false
             favTableView.isHidden = true
@@ -37,8 +47,17 @@ class FavouriteViewController: UIViewController   {
             
         }
     }
+    func bindWithUI() {
+        DispatchQueue.main.async {
+            self.leaguesArray = self.favPresenter.fetchFavouritsFromDB()
+            self.favTableView.reloadData()
+            
+        }
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-        leaguesArray = DataBaseManager.fetchLeaguesFromDB()
+        leaguesArray = favPresenter.fetchFavouritsFromDB()
         if leaguesArray.count == 0{
             noFavImg.isHidden = false
             favTableView.isHidden = true
@@ -70,6 +89,9 @@ class FavouriteViewController: UIViewController   {
     
 }
 
+
+
+
 extension  FavouriteViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  leaguesArray.count
@@ -94,6 +116,10 @@ extension  FavouriteViewController : UITableViewDataSource {
         return cell
     }
 }
+
+
+
+
 extension FavouriteViewController : UITableViewDelegate{
     
     
@@ -105,9 +131,8 @@ extension FavouriteViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         AlertPresenter.negativeAlert(false, title: "Delete League", message: "Are you sure you want to delete league ? ", yesButton: "YES", noButton: "NO", on: self, yesHandler: {
-            DataBaseManager.deleteLeagueItem(league: (self.leaguesArray[indexPath.row]))
-            
-            self.leaguesArray = DataBaseManager.fetchLeaguesFromDB()
+            self.favPresenter.deleteItem(league: (self.leaguesArray[indexPath.row]))
+            self.leaguesArray = self.favPresenter.fetchFavouritsFromDB()
             self.favTableView.reloadData()
             if(self.leaguesArray.count == 0) {
                 self.viewWillAppear(true)

@@ -6,3 +6,16 @@
 //
 
 import Foundation
+class TeamDetailsPresenter {
+    
+    var favouriteTeamsVC : ViewProtocol!
+    func attachViewcontroller (favouriteVC : ViewProtocol){
+        self.favouriteTeamsVC = favouriteVC
+    }
+    
+    func addTeamInDB (team : TeamsResult){
+        DataBaseManager.addTeam(team: team)
+        
+    }
+    
+}

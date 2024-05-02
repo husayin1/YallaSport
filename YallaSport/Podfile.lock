@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.9.1)
   - Kingfisher (7.11.0)
+  - lottie-ios (4.4.3)
   - ReachabilitySwift (5.2.2)
   - SDWebImage (5.19.1):
     - SDWebImage/Core (= 5.19.1)
@@ -11,6 +12,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Kingfisher
+  - lottie-ios
   - ReachabilitySwift
   - SDWebImage
   - SplashScreen
@@ -20,6 +22,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - lottie-ios
     - ReachabilitySwift
     - SDWebImage
     - SplashScreen
@@ -28,11 +31,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  lottie-ios: fcb5e73e17ba4c983140b7d21095c834b3087418
   ReachabilitySwift: 2128f3a8c9107e1ad33574c6e58e8285d460b149
   SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
   SplashScreen: 122b2edd44650cb8c2075249446151ee9dc30025
   SwiftyOnboard: 76a648dc1dcbc844343b6b95fe5883cb64a62f4a
 
-PODFILE CHECKSUM: 96f9924c272cee144e015cd734927a835e0045ba
+PODFILE CHECKSUM: 2f340b51a79cf144633ef2ccec2d50a25a62f9d4
 
 COCOAPODS: 1.15.2

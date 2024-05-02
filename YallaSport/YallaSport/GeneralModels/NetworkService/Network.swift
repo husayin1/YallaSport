@@ -55,8 +55,7 @@ class Network :NetworkLayerProtocol{
         guard let newUrl = url else {return }
         print(newUrl)
         let request = URLRequest(url: newUrl)
-        let session = URLSession.shared
-        
+        let session = URLSession.shared        
         let task = session.dataTask(with: request){
             data,response,error in
             if let error = error {
@@ -68,7 +67,6 @@ class Network :NetworkLayerProtocol{
                 completionHnadler(.failure(error))
                 return
             }
-
             do {
                 let teams = try JSONDecoder().decode(Teams.self, from: data)
                 completionHnadler(.success(teams))
@@ -79,10 +77,7 @@ class Network :NetworkLayerProtocol{
                 print("Error ")
             }
         }
-        
         task.resume()
-        
-        
      }
 //fetch Fixtures
     static func fetchFixtures(sportType sport:String,leagueID: String,from:String,to :String,completionHandler completion: @escaping(Result<Fixtures,Error>) -> (Void)) {

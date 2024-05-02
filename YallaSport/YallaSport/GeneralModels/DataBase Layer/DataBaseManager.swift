@@ -17,6 +17,9 @@ protocol CoreDataProtocol {
     static func deleteLeagueItem(league: League)
     static func getAllLeagues()->[LeagueInfo]
     static func deleteDataFromCoreData()
+    //
+    static func addTeam(team : TeamsResult )
+    static func fetchTeamsFromDB () -> [TeamsDB]
 }
 
 class DataBaseManager:CoreDataProtocol {
@@ -132,6 +135,66 @@ class DataBaseManager:CoreDataProtocol {
             print(err.localizedDescription)
         }
     }
+    
+    //insert , delete and fetch teams
+    static func addTeam(team: TeamsResult) {
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "TeamsDB", in: context) else {
+                  print("Entity is nil")
+                  return
+              }
+
+              let myLeague = NSManagedObject(entity: entity, insertInto: context)
+
+        myLeague.setValue(team.team_name, forKey: "team_name")
+        myLeague.setValue(team.team_key, forKey: "team_key")
+             
+        if let logoURLString = team.team_logo,
+                 let url = URL(string: logoURLString) {
+                  let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                      guard let data = data else {
+                          print("Error downloading image:", error?.localizedDescription ?? "Unknown error")
+                          return
+                      }
+                      myLeague.setValue(data, forKey: "team_logo")
+                      contextSave()
+                  }
+                  task.resume()
+              } else {
+                  contextSave()
+                  print("Invalid URL or nil logo URL provided")
+              }
+    }
+    
+    
+    static func fetchTeamsFromDB() -> [TeamsDB] {
+        let fetchRequest = NSFetchRequest<TeamsDB>(entityName: "TeamsDB")
+        do{
+            let teams = try context.fetch(fetchRequest)
+            return teams
+        }catch let error as NSError{
+            print("Error in Fetching Leagues : ",error)
+        }
+        return []
+    }
+    
+    static func deleteTeamItem(team: TeamsDB) {
+                let fetchRequest: NSFetchRequest<TeamsDB> = TeamsDB.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "team_key == %@", team.team_key!)
+                do {
+                    let fetchedTeams = try context.fetch(fetchRequest)
+                    guard let teamEntityToDelete = fetchedTeams.first else {
+                        print("League not found in database")
+                        return
+                    }
+                    context.delete(teamEntityToDelete)
+                    contextSave()
+                    print("League item deleted successfully")
+                } catch {
+                    print("Error deleting league item: \(error)")
+                }
+        }
+    
     
 }
 
